@@ -10,7 +10,6 @@ public class FinalProject {
 
     public static void main(String[] args) {
         SpringApplication.run(FinalProject.class, args);
-        log.info("Aplikace běží na adrese: http://localhost:8080/");
+        log.info("App is running on: http://localhost:8080/");
     }
-
 }
