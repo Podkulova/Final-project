@@ -1,4 +1,4 @@
-package org.example.domacirozpocet2;
+package org.example.examplefinalProject;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

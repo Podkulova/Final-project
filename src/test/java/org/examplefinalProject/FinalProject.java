@@ -1,4 +1,4 @@
-package org.example.domacirozpocet2;
+package org.examplefinalProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
