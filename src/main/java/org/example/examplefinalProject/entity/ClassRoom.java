@@ -8,15 +8,52 @@ import java.util.List;
 public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ClassRoomId;
+    private Integer classRoomId;
 
     private String classRoomName;
 
     @OneToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "class_teacher_id")
+    @JoinColumn(name = "teacher_id")
     private Teacher classTeacher;
 
     @OneToMany(mappedBy = "classRoom")
-    @OrderBy(value = "classTeacherSurname, classTeacherName")
-    private List<Student> student;
+    @OrderBy(value = "studentSurname, studentName")
+    private List<Student> students;
+
+    public Integer getClassRoomId() {
+        return classRoomId;
+    }
+
+    public void setClassRoomId(Integer classRoomId) {
+        this.classRoomId = classRoomId;
+    }
+
+    public String getClassRoomName() {
+        return classRoomName;
+    }
+
+    public void setClassRoomName(String classRoomName) {
+        this.classRoomName = classRoomName;
+    }
+
+    public Teacher getClassTeacher() {
+        return classTeacher;
+    }
+
+    public void setClassTeacher(Teacher classTeacher) {
+        this.classTeacher = classTeacher;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    @Override
+    public String toString() {
+        return classRoomName;
+    }
 }

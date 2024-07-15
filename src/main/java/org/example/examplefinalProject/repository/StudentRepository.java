@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    int countByClassRoom_Id(int classRoom);
+    int countByClassRoom_Id(Integer classRoomId);
 }

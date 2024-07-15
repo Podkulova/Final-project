@@ -29,7 +29,7 @@ public class ClassRoomService {
     /**
      * Vrací detail třídy.
      *
-     * @param id Identifikátor třídy.
+     // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
     public ClassRoom findById(int classroomId) {
@@ -39,7 +39,7 @@ public class ClassRoomService {
     /**
      * Vrací počet studentů v dané třídě.
      *
-     * @param id Identifikátor třídy.
+     // @param id Identifikátor třídy.
      * @return Počet studentů.
      */
     public int studentCountById(int classRoomId) {

@@ -11,7 +11,7 @@ public class Teacher {
     private String teacherName;
     private String teacherSurname;
 
-    @OneToOne(mappedBy = "class_teacher")
+    @OneToOne(mappedBy = "classTeacher")
     private ClassRoom classRoom;
 
     public Integer getTeacherId() {

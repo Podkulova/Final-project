@@ -17,7 +17,7 @@ public class Student {
     @ManyToOne
     private ClassRoom classRoom;
     @ManyToMany(mappedBy = "children")
-    @OrderBy("studentSurname, studentName")
+    @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;
 
         public Integer getStudentId() {
@@ -60,7 +60,7 @@ public class Student {
                 this.parents = parents;
         }
 
-        public String getAllName(){
+        public String getFullName(){
                 return studentName + " "  + studentSurname;
         }
 
