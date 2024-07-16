@@ -24,7 +24,7 @@ public class Parent {
             joinColumns = @JoinColumn(name = "parent_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    @OrderBy(value = "parentSurname, parentName")
+    @OrderBy(value = "studentSurname, studentName")
     private List<Student> children;
 
     public Integer getParentId() {
