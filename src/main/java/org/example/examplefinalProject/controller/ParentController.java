@@ -18,14 +18,14 @@ public class ParentController {
 
     @GetMapping("")
     public ModelAndView index(){
-        ModelAndView modelAndView = new ModelAndView("/parent/index");
-        modelAndView.addObject("parent", parentService.findAll());
+        ModelAndView modelAndView = new ModelAndView("parent/index");
+        modelAndView.addObject("parentList", parentService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/{parentId}")
     public ModelAndView detail(@PathVariable int parentId){
-        ModelAndView modelAndView = new ModelAndView("/parent/detail");
+        ModelAndView modelAndView = new ModelAndView("parent/detail");
         modelAndView.addObject("parent", parentService.findById(parentId));
         return modelAndView;
     }
