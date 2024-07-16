@@ -18,14 +18,14 @@ public class Parent {
     private String parentEmail;
     private String parentPhone;
 
-    //@ManyToMany
-   // @JoinTable(
-    //        name = "student_parent",
-     //       joinColumns = @JoinColumn(name = "parent_id"),
-     //       inverseJoinColumns = @JoinColumn(name = "student_id")
-   // )
-    //@OrderBy(value = "studentSurname, studentName")
-    //private List<Student> children;
+    @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = @JoinColumn(name = "parent_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    @OrderBy(value = "studentSurname, studentName")
+    private List<Student> children;
 
     public Integer getParentId() {
         return parentId;
@@ -67,7 +67,6 @@ public class Parent {
         this.parentPhone = parentPhone;
     }
 
-/*
     public List<Student> getChildren() {
         return children;
     }
@@ -75,9 +74,8 @@ public class Parent {
     public void setChildren(List<Student> children) {
         this.children = children;
     }
-*/
 
-    public String getParentFullName(){
+    public String getParentAllName(){
         return parentName + " " + parentSurname;
     }
 

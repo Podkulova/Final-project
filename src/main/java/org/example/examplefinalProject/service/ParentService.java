@@ -18,7 +18,7 @@ public class ParentService {
         return parentRepository.findAll();
     }
 
-    public Parent findById(int parentId){
-        return parentRepository.findById(parentId).orElse(null);
+    public Parent findById(int id){
+        return parentRepository.findById(id).orElse(null);
     }
 }
