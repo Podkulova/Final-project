@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'Rodič ' + ${parent.parentFullName}">Rodič</title>
+    <title th:text="'Rodič ' + ${student.fullName}">Student</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
 </head>
 <body>
 <div class="container">
-    <h1>Rodič: <strong th:text="${parent.parentFullName}">Parent Full Name</strong></h1>
-    <p>Email: <span th:text="${parent.email}">Email</span></p>
-    <p>Telefon: <span th:text="${parent.phone}">Phone</span></p>
+    <h1>Student: <strong th:text="${student.fullName}">Student Full Name</strong></h1>
+    <p>Třída: <span th:text="${student.classRoom}">Class Room Name</span></p>
+    <p>Rodiče: <span th:text="${student.parents}">Student Parent</span></p>
 
     <table class="table">
         <thead>
@@ -19,7 +19,7 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        <tbody>
+        <!--<tbody>
         <tr th:each="child : ${parent.children}">
             <td th:text="${child.studentSurname}">Student Surname</td>
             <td th:text="${child.studentName}">Student Name</td>
@@ -29,7 +29,7 @@
                 </a>
             </td>
         </tr>
-        </tbody>
+        </tbody>-->
     </table>
 </div>
 </body>
