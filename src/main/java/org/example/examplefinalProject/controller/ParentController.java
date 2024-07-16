@@ -19,7 +19,7 @@ public class ParentController {
     @GetMapping("")
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("/parent/index");
-        modelAndView.addObject("parent", parentService.findAll());
+        modelAndView.addObject("parentList", parentService.findAll());
         return modelAndView;
     }
 
