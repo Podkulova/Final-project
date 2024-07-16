@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'Rodič ' + ${student.fullName}">Student</title>
+    <title th:text="'Student ' + ${student.fullName}">Student</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
 </head>
@@ -19,17 +19,16 @@
             <th scope="col"></th>
         </tr>
         </thead>
-        <!--<tbody>
-        <tr th:each="child : ${parent.children}">
-            <td th:text="${child.studentSurname}">Student Surname</td>
-            <td th:text="${child.studentName}">Student Name</td>
+        <tbody>
+        <tr th:each="parent : ${student.getParents()}">
+            <td th:text="${student.parents}">Parents Name</td>
             <td>
-                <a th:href="@{/student/{id}(id=${child.studentId})}">
+                <a th:href="@{/parent/{parentId}}">
                     <i class="bi bi-arrow-right-square-fill"></i>
                 </a>
             </td>
         </tr>
-        </tbody>-->
+        </tbody>
     </table>
 </div>
 </body>
