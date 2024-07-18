@@ -19,7 +19,7 @@ public class StudentController {
     @GetMapping("")
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("student/index");
-        modelAndView.addObject("student", studentService.findAll());
+        modelAndView.addObject("studentList", studentService.findAll());
         return modelAndView;
     }
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seznam studentů ve třídě</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Seznam studentů ve třídě</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Třída</th>
+            <th scope="col">Třídní učitel</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="classRoom : ${classRoomList}">
+            <td th:text="${classRoom.classRoomName}">ClassRoom Name</td>
+            <td th:text="${classRoom.classTeacher}">ClassRoom Teacher</td>
+            <td>
+                <a th:href="@{/classRoom/{id}(id=${classRoom.classRoomId})}">
+                    <i class="bi bi-arrow-right-square-fill"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
