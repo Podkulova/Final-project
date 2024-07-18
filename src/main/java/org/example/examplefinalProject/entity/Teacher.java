@@ -46,7 +46,7 @@ public class Teacher {
         this.classRoom = classRoom;
     }
 
-    public String getTeacherAllName() {
+    public String getTeacherFullName() {
         return teacherName + " " + teacherSurname;
     }
 

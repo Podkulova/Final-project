@@ -43,7 +43,7 @@ public class ClassRoomService {
      * @return Počet studentů.
      */
     public int studentCountById(int classRoomId) {
-        return studentRepository.countByClassRoom_Id(classRoomId);
+        return studentRepository.countByClassRoomId(classRoomId);
     }
 
 }
