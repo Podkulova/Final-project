@@ -15,7 +15,7 @@ public class Student {
     private String studentSurname;
 
     @ManyToOne
-    private ClassRoom classRoom;
+    private ClassRoom  classRoom;
     @ManyToMany(mappedBy = "children")
     @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;

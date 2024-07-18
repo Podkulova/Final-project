@@ -32,8 +32,8 @@ public class ClassRoomService {
      // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
-    public ClassRoom findById(int classroomId) {
-        return classRoomRepository.findById(classroomId).orElse(null);
+    public ClassRoom findById(int classRoomId) {
+        return classRoomRepository.findById(classRoomId).orElse(null);
     }
 
     /**
@@ -43,7 +43,7 @@ public class ClassRoomService {
      * @return Počet studentů.
      */
     public int studentCountById(int classRoomId) {
-        return studentRepository.countByClassRoomId(classRoomId);
+        return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
 
 }
