@@ -75,7 +75,7 @@ public class Parent {
         this.children = children;
     }
 
-    public String getParentAllName(){
+    public String getParentFullName(){
         return parentName + " " + parentSurname;
     }
 
