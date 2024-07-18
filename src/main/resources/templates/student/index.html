@@ -19,9 +19,10 @@
         </thead>
         <tbody>
         <tr th:each="student : ${studentList}">
-            <td th:text="${student.parentName}">Parent Name</td>
-            <td th:text="${student.parentSurname}">Parent Surname</td>
-            <td th:text="${student.classRoom}">Parent Surname</td>
+            <td th:text="${student.studentName}">Student Name</td>
+            <td th:text="${student.studentSurname}">Student Surname</td>
+            <td>
+                <a th:href="${student.classRoom.classRoomId}">${student.classRoom.classRoomName}</a></td>
             <td>
                 <a th:href="@{/student/${student.studentId}}"> <!--todo sem musíme napojit stránku na kterou se to bude překlápět-->
                     <i class="bi bi-arrow-right-square-fill"></i>

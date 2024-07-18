@@ -17,9 +17,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="student : ${studentList}">
-            <td th:text="${student.studentName}">Student Name</td>
-            <td th:text="${student.studentSurname}">Student Surname</td>
+        <tr th:each="classRoom : ${classRoomList}">
+            <td th:text="${classRoom.classRoomName}">ClassRoom Name</td>
+            <td th:text="${classRoom.classTeacher}">ClassRoom Teacher</td>
             <td>
                 <a th:href="@{/classRoom/{id}(id=${classRoom.classRoomId})}">
                     <i class="bi bi-arrow-right-square-fill"></i>
