@@ -21,7 +21,7 @@
             <td th:text="${parent.parentName}">Parent Name</td>
             <td th:text="${parent.parentSurname}">Parent Surname</td>
             <td>
-                <a th:href="@{/parent/{id}(id=${parent.parentId})}">
+                <a th:href="@{/parent/{id}(id=${parent.parentId})}">  <!--todo sem musíme napojit stránku na kterou se to bude překlápět-->
                     <i class="bi bi-arrow-right-square-fill"></i>
                 </a>
             </td>

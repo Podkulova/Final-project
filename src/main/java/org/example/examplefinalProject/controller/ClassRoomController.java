@@ -19,7 +19,7 @@ public class ClassRoomController {
     @GetMapping("")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/classRoom/index");
-        modelAndView.addObject("classRoom", classRoomService.findAll());
+        modelAndView.addObject("classRoomList", classRoomService.findAll());
         return modelAndView;
     }
 
