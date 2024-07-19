@@ -4,11 +4,12 @@
     <title th:text="'Učitel ' + ${teacher.teacherFullName}">Učitel</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/teacher.css}">
 </head>
 <body>
 <div class="container">
-    <h1>Učitel: <strong th:text="${teacher.teacherFullName}">Teacher Full Name</strong></h1>
-    <p>Třída: <span th:text="${teacher.classRoom}">Class Room Name</span></p>
+    <h1>Učitel: <strong th:text="${teacher.teacherFullName}">Jméno a příjmení </strong></h1>
+    <p>Třída: <span th:text="${teacher.classRoom}">Třída</span></p>
 
     <!--<table class="table">
         <thead>
