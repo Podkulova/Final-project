@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Seznam učitelů</title>
+    <title>Seznam učitelů a asistentů třídy</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/teacher.css}">
 </head>
 <body>
-<div class="container">
-    <h1>Seznam učitelů</h1>
-    <table class="table">
+<div class="containers">
+    <h1>Seznam učitelů a asistentů třídy</h1>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Jméno</th>
             <th scope="col">Příjmení</th>
             <th scope="col">Třída</th>
+            <th scope="col">Detail</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="teacher : ${teacherList}">
             <td th:text="${teacher.teacherName}">Teacher Name</td>
             <td th:text="${teacher.teacherSurname}">Teacher Surname</td>
+<!--          <td th:text="${teacher.classRoom}">Class Room</td>-->
+
             <td>
-                <a th:href="@{/teacher/{id}(id=${teacher.teacherId})}">  <!--todo sem musíme napojit stránku na kterou se to bude překlápět-->
-                    <i class="bi bi-arrow-right-square-fill"></i>
+                <a th:href="@{/classRoom/{id}(id=${teacher.classRoom})}" >
+                    <a th:text="${teacher.classRoom}">Class Room</a>
+                </a>
+
+            </td>
+            <td>
+                <a th:href="@{/teacher/{id}(id=${teacher.teacherId})}">
+                    <i class="bi bi-arrow-right-square-fill"></i> <img src="images/detail.png" alt="Detail">
                 </a>
             </td>
         </tr>
