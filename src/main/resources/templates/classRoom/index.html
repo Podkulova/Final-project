@@ -4,25 +4,27 @@
     <title>Seznam studentů ve třídě</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/teacher.css}">
 </head>
 <body>
-<div class="container">
-    <h1>Seznam studentů ve třídě</h1>
-    <table class="table">
+<div class="containers">
+    <h1>Seznam tříd</h1>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Třída</th>
             <th scope="col">Třídní učitel</th>
-            <th scope="col"></th>
+            <th scope="col">Detail</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="classRoom : ${classRoomList}">
             <td th:text="${classRoom.classRoomName}">ClassRoom Name</td>
+
             <td th:text="${classRoom.classTeacher}">ClassRoom Teacher</td>
             <td>
                 <a th:href="@{/classRoom/{id}(id=${classRoom.classRoomId})}">
-                    <i class="bi bi-arrow-right-square-fill"></i>
+                    <i class="bi bi-arrow-right-square-fill"></i> <img src="images/detail.png" alt="Detail">
                 </a>
             </td>
         </tr>

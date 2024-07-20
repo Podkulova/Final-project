@@ -4,17 +4,18 @@
     <title>Seznam studentů</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap-icons.css}">
+    <link rel="stylesheet" th:href="@{/css/teacher.css}">
 </head>
 <body>
-<div class="container">
-    <h1>Detail studenta</h1>
-    <table class="table">
+<div class="containers">
+    <h1>Seznam studentů</h1>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th scope="col">Jméno</th>
             <th scope="col">Příjmení</th>
             <th scope="col">Třída</th>
-            <th scope="col"></th>
+            <th scope="col">Detail</th>
         </tr>
         </thead>
         <tbody>
@@ -22,10 +23,13 @@
             <td th:text="${student.studentName}">Student Name</td>
             <td th:text="${student.studentSurname}">Student Surname</td>
             <td>
-                <a th:href="${student.classRoom.classRoomId}">${student.classRoom.classRoomName}</a></td>
+                <a th:href="@{/classRoom/{id}(id=${student.classRoom})}">
+                    <i class="bi bi-arrow-right-square-fill"></i> Třída
+                </a>
+            </td>
             <td>
-                <a th:href="@{/student/${student.studentId}}"> <!--todo sem musíme napojit stránku na kterou se to bude překlápět-->
-                    <i class="bi bi-arrow-right-square-fill"></i>
+                <a th:href="@{/student/{id}(id=${student.studentId})}">
+                    <i class="bi bi-arrow-right-square-fill"></i> <img src="images/detail.png" alt="Detail">
                 </a>
             </td>
         </tr>

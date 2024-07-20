@@ -1,6 +1,7 @@
 package org.example.examplefinalProject.service;
 
 import org.example.examplefinalProject.entity.ClassRoom;
+import org.example.examplefinalProject.entity.Student;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,6 @@ public class ClassRoomService {
     public int studentCountById(int classRoomId) {
         return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
+
 
 }

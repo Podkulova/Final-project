@@ -1,5 +1,6 @@
 package org.example.examplefinalProject.service;
 
+import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Teacher;
 import org.example.examplefinalProject.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,6 @@ public class TeacherService {
     public Teacher findById(Integer teacherId) {
         return teacherRepository.findById(teacherId).orElse(null);
     }
+
+
 }
