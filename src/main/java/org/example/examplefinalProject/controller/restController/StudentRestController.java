@@ -31,4 +31,14 @@ public class StudentRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{classRoomId}")
+    public ResponseEntity<List<Student>> getStudentsByClassRoomId(@PathVariable Integer classRoomId) {
+        List<Student> students = studentService.findByClassRoomId(classRoomId);
+        if (students != null && !students.isEmpty()) {
+            return ResponseEntity.ok(students);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
 }

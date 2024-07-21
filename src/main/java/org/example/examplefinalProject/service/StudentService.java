@@ -23,4 +23,7 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    public List<Student> findByClassRoomId(Integer classRoomId) {
+        return studentRepository.findByClassRoomClassRoomId(classRoomId); }
+
 }
