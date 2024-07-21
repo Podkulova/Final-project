@@ -24,7 +24,7 @@ public class TeacherRestController {
         return ResponseEntity.ok(teacherService.findAll());
     }
 
-    @GetMapping("/{parentId}")
+    @GetMapping("/{teacherId}")
     public ResponseEntity<Teacher> detail(@PathVariable int teacherId) {
         Teacher teacher = teacherService.findById(teacherId);
         if (teacher != null) {
