@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/parent")
 
 public class ParentRestController {
     private final ParentService parentService;
