@@ -56,10 +56,12 @@ class ClassRoomServiceTest {
 
     @Test
     public void testFindById() {
+        // Arrange
         ClassRoom classRoom = new ClassRoom();
         classRoom.setClassRoomId(1);
         when(classRoomRepository.findById(1)).thenReturn(Optional.of(classRoom));
 
+        // Act
         ClassRoom result = classRoomService.findById(1);
 
         assertNotNull(result);
