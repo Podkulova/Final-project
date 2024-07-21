@@ -29,6 +29,10 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
+    public List<Student> findByClassRoomId(Integer classRoomId) {
+        return studentRepository.findByClassRoomClassRoomId(classRoomId);
+    }
+
     public void createStudent(String studentName, String studentSurname, String classRoomName) {
         ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
         if (classRoom == null) {
