@@ -15,6 +15,7 @@ public class Student {
     private String studentSurname;
 
     @ManyToOne
+    @JoinColumn(name = "class_room_id")
     private ClassRoom  classRoom;
     @ManyToMany(mappedBy = "children")
     @OrderBy(value = "parentSurname, parentName")
