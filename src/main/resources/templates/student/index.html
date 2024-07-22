@@ -23,8 +23,8 @@
             <td th:text="${student.studentName}">Student Name</td>
             <td th:text="${student.studentSurname}">Student Surname</td>
             <td>
-                <a th:href="@{/classRoom/{id}(id=${student.classRoom})}">
-                    <i class="bi bi-arrow-right-square-fill"></i> Třída
+                <a th:href="@{/student/{id}(id=${student.classRoom})}">
+                    Třída  <i class="bi bi-arrow-right-square-fill"></i>
                 </a>
             </td>
             <td>
