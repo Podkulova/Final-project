@@ -11,5 +11,4 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     int countByClassRoomClassRoomId (Integer classRoomId);
     List<Student> findByClassRoomClassRoomId(Integer classRoomId);
 
-
 }
