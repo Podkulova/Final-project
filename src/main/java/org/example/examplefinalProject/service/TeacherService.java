@@ -1,20 +1,22 @@
 package org.example.examplefinalProject.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Teacher;
 import org.example.examplefinalProject.exception.InvalidParamsException;
+import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class TeacherService {
-    private final TeacherRepository teacherRepository;
 
-    public TeacherService(TeacherRepository teacherRepository) {
-        this.teacherRepository = teacherRepository;
-    }
+    private final ClassRoomRepository classRoomRepository;
+
+    private final TeacherRepository teacherRepository;
 
     public List<Teacher> findAll() {
         return teacherRepository.findAll();

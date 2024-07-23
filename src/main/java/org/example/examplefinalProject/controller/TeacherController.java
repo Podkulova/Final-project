@@ -34,9 +34,12 @@ public class TeacherController {
     @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String teacherName,
                                 @RequestParam String teacherSurname,
-                                @RequestParam ClassRoom classRoom) {
+                                @RequestParam String classRoom) {
 
-        teacherService.createTeacher(teacherName, teacherSurname, classRoom);
+        ClassRoom classRoom1 = new ClassRoom();
+        classRoom1.setClassRoomName(classRoom);
+
+        teacherService.createTeacher(teacherName, teacherSurname, classRoom1);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/";
     }

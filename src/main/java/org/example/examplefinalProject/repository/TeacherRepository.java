@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
-     void createTeacher(String teacherName, String teacherSurname, ClassRoom classRoom);
-
 }
