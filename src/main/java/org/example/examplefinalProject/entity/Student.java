@@ -1,10 +1,12 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 public class Student {
 
     @Id
@@ -16,59 +18,60 @@ public class Student {
 
     @ManyToOne
     @JoinColumn(name = "class_room_id")
-    private ClassRoom  classRoom;
+    private ClassRoom classRoom;
+
     @ManyToMany(mappedBy = "children")
     @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;
 
-        public Integer getStudentId() {
-                return studentId;
-        }
+    // Getters and setters...
 
-        public void setStudentId(Integer id) {
-                this.studentId = id;
-        }
+    public Integer getStudentId() {
+        return studentId;
+    }
 
-        public String getStudentName() {
-                return studentName;
-        }
+    public void setStudentId(Integer id) {
+        this.studentId = id;
+    }
 
-        public void setStudentName(String name) {
-                this.studentName = name;
-        }
+    public String getStudentName() {
+        return studentName;
+    }
 
-        public String getStudentSurname() {
-                return studentSurname;
-        }
+    public void setStudentName(String name) {
+        this.studentName = name;
+    }
 
-        public void setStudentSurname(String surname) {
-                this.studentSurname = surname;
-        }
+    public String getStudentSurname() {
+        return studentSurname;
+    }
 
-        public ClassRoom getClassRoom() {
-                return classRoom;
-        }
+    public void setStudentSurname(String surname) {
+        this.studentSurname = surname;
+    }
 
-        public void setClassRoom(ClassRoom classRoom) {
-                this.classRoom = classRoom;
-        }
+    public ClassRoom getClassRoom() {
+        return classRoom;
+    }
 
-        public List<Parent> getParents() {
-                return parents;
-        }
+    public void setClassRoom(ClassRoom classRoom) {
+        this.classRoom = classRoom;
+    }
 
-        public void setParents(List<Parent> parents) {
-                this.parents = parents;
-        }
+    public List<Parent> getParents() {
+        return parents;
+    }
 
-        public String getFullName(){
-                return studentName + " "  + studentSurname;
-        }
+    public void setParents(List<Parent> parents) {
+        this.parents = parents;
+    }
 
-        @Override
+    public String getFullName() {
+        return studentName + " " + studentSurname;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s %s [%d]", studentName, studentSurname, studentId);
     }
 }
-
-
