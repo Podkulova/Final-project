@@ -1,13 +1,14 @@
 package org.example.examplefinalProject.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.service.TeacherService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@Slf4j
 @RequestMapping("/teacher")
 public class TeacherController {
     private final TeacherService teacherService;
@@ -28,5 +29,15 @@ public class TeacherController {
         ModelAndView modelAndView = new ModelAndView("/teacher/detail");
         modelAndView.addObject("teacher", teacherService.findById(teacherId));
         return modelAndView;
+    }
+
+    @PostMapping("/createTeacher")
+    public String createTeacher(@RequestParam String teacherName,
+                                @RequestParam String teacherSurname,
+                                @RequestParam ClassRoom classRoom) {
+
+        teacherService.createTeacher(teacherName, teacherSurname, classRoom);
+        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
+        return "redirect:/";
     }
 }

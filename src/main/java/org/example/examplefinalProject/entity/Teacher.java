@@ -1,8 +1,10 @@
 package org.example.examplefinalProject.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 @Entity
+@Builder
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,4 +56,5 @@ public class Teacher {
     public String toString() {
         return String.format("%s %s [%d]", teacherName, teacherSurname, teacherId);
     }
+
 }
