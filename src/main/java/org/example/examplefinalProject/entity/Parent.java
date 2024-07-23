@@ -1,13 +1,12 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-
 import java.util.List;
 
-/**
- *
- */
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "parentId")
 public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +17,7 @@ public class Parent {
     private String parentEmail;
     private String parentPhone;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_parent",
             joinColumns = @JoinColumn(name = "parent_id"),
@@ -27,11 +26,13 @@ public class Parent {
     @OrderBy(value = "studentSurname, studentName")
     private List<Student> children;
 
+    // Getters and setters...
+
     public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer ParentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 
@@ -75,12 +76,12 @@ public class Parent {
         this.children = children;
     }
 
-    public String getParentFullName(){
+    public String getParentFullName() {
         return parentName + " " + parentSurname;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("%s %s [%d]", parentName, parentSurname, parentId);
     }
 }

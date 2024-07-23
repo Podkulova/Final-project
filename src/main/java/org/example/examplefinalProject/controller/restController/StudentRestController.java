@@ -13,6 +13,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/student")
+@CrossOrigin()
 public class StudentRestController {
 
     private final StudentService studentService;
