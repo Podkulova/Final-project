@@ -24,8 +24,6 @@ public class Student {
     @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;
 
-    // Getters and setters...
-
     public Integer getStudentId() {
         return studentId;
     }
