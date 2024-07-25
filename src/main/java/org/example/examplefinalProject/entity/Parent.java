@@ -17,6 +17,8 @@ public class Parent {
     private String parentEmail;
     private String parentPhone;
 
+    private boolean isDone;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_parent",
@@ -26,7 +28,16 @@ public class Parent {
     @OrderBy(value = "studentSurname, studentName")
     private List<Student> children;
 
+
+
     // Getters and setters...
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
+    }
 
     public Integer getParentId() {
         return parentId;
