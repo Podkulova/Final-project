@@ -33,11 +33,11 @@ public class TeacherRestController {
         }
     }
 
-    @PostMapping("/createTeacher")
+ /*   @PostMapping("/createTeacher")
     public ResponseEntity<TeacherRecord> createTeacher(@RequestBody TeacherRecord teacherRecord) {
         teacherService.createTeacher(teacherRecord.teacherName(), teacherRecord.teacherSurname(), teacherRecord.classRoom());
         return new ResponseEntity<>(teacherRecord, HttpStatus.CREATED);
-    }
+    }*/
 
     @DeleteMapping("/deleteTeacher")
     public ResponseEntity<String> deleteTeacher(@RequestParam Integer teacherId) {

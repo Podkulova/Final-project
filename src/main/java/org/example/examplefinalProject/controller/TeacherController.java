@@ -33,7 +33,7 @@ public class TeacherController {
         return modelAndView;
     }
 
-    @PostMapping("/createTeacher")
+/*    @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String teacherName,
                                 @RequestParam String teacherSurname,
                                 @RequestParam String classRoom) {
@@ -44,7 +44,7 @@ public class TeacherController {
         teacherService.createTeacher(teacherName, teacherSurname, classRoom1);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/";
-    }
+    }*/
 
     @PostMapping("/deleteTeacher")
     public String deleteTeacher(@RequestParam("teacherId") Integer teacherId, RedirectAttributes redirectAttributes) {
@@ -54,6 +54,6 @@ public class TeacherController {
         } catch (TeacherNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return "redirect:/teachers";
+        return "redirect:/";
     }
 }
