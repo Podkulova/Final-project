@@ -36,4 +36,10 @@ public class ParentService {
             throw new InvalidStatusException(String.format("This parent with name '%s' has invalid state: '%s'", parentName.getParentName(), parentName.isDone()));
         }
     }
+/*    Parent parent = new Parent();
+public void deleteParent(){
+    if (!parent.isDone()){
+        parent.remove(0);
+        }
+    }*/
 }

@@ -2,6 +2,7 @@ package org.example.examplefinalProject.service;
 
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
+import org.example.examplefinalProject.entity.Teacher;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ public class ClassRoomService {
 
     /**
      * Vrací detail třídy.
+     * // @param id Identifikátor třídy.
      *
-     // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
     public ClassRoom findById(int classRoomId) {
@@ -39,13 +40,22 @@ public class ClassRoomService {
 
     /**
      * Vrací počet studentů v dané třídě.
+     * // @param id Identifikátor třídy.
      *
-     // @param id Identifikátor třídy.
      * @return Počet studentů.
      */
     public int studentCountById(int classRoomId) {
         return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
 
-
+    public void createClassRoom(String classRoomName, Teacher classTeacher) {
+        ClassRoom classRoom = ClassRoom.builder()
+                .classRoomName(classRoomName)
+                .classTeacher(classTeacher)
+                .build();
+        if (classRoomName == null || classTeacher == null) {
+            throw new RuntimeException(); // toDo zde chybí napárování na Exception
+        }
+        classRoomRepository.save(classRoom);
+    }
 }
