@@ -38,5 +38,7 @@ public class TeacherService {
         teacherRepository.save(teacher);
     }
 
-
+    public void deleteTeacher(Integer id) {
+        teacherRepository.deleteById(id);
+    }
 }
