@@ -1,5 +1,6 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -15,6 +16,7 @@ public class Teacher {
     private String teacherSurname;
 
     @OneToOne(mappedBy = "classTeacher")
+    @JsonBackReference
     private ClassRoom classRoom;
 
     public Integer getTeacherId() {

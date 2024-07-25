@@ -1,5 +1,6 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -20,8 +21,14 @@ public class Student {
     @JoinColumn(name = "class_room_id")
     private ClassRoom classRoom;
 
-    @ManyToMany(mappedBy = "children")
+    @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id")
+    )
     @OrderBy(value = "parentSurname, parentName")
+    @JsonBackReference
     private List<Parent> parents;
 
     public Integer getStudentId() {

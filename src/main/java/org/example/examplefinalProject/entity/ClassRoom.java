@@ -1,6 +1,7 @@
 package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
@@ -17,10 +18,12 @@ public class ClassRoom {
 
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
+    @JsonManagedReference
     private Teacher classTeacher;
 
     @OneToMany(mappedBy = "classRoom")
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> students;
 
     public Integer getClassRoomId() {
