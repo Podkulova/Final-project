@@ -36,7 +36,6 @@ class ClassRoomServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-
     @Test
     public void testFindAll() {
         ClassRoom classRoom1 = new ClassRoom();
