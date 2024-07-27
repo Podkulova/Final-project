@@ -1,6 +1,7 @@
 package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import java.util.List;
@@ -24,9 +25,8 @@ public class Parent {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> children;
-
-    // Getters and setters...
 
     public Integer getParentId() {
         return parentId;
