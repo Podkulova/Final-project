@@ -3,6 +3,8 @@ package org.example.examplefinalProject.controller.restController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.entity.Student;
+import org.example.examplefinalProject.entity.dto.StudentDTO;
+import org.example.examplefinalProject.service.MyCustomMapper;
 import org.example.examplefinalProject.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,14 @@ import java.util.List;
 public class StudentRestController {
 
     private final StudentService studentService;
+    private final MyCustomMapper myCustomMapper;
 
     @GetMapping("")
-    public List<Student> getAllStudents() {
-        return studentService.findAll();
+    public List<StudentDTO> getAllStudents() {
+        List<StudentDTO> studentsDto = studentService.findAll().stream()
+                .map(myCustomMapper::convertToDTO)
+                .toList();
+        return studentsDto;
     }
 
     @GetMapping("/{studentId}")
