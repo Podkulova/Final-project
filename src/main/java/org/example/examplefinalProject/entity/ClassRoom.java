@@ -16,7 +16,7 @@ public class ClassRoom {
 
     private String classRoomName;
 
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     @JsonManagedReference
     private Teacher classTeacher;
