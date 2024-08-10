@@ -20,8 +20,8 @@ public class Parent {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_parent",
-            joinColumns = @JoinColumn(name = "parent_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
+            joinColumns = @JoinColumn(name = "parentId"),
+            inverseJoinColumns = @JoinColumn(name = "studentId")
     )
     @OrderBy(value = "studentSurname, studentName")
     private List<Student> children;

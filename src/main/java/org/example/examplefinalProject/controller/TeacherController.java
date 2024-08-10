@@ -33,18 +33,14 @@ public class TeacherController {
         return modelAndView;
     }
 
-/*    @PostMapping("/createTeacher")
+    @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String teacherName,
                                 @RequestParam String teacherSurname,
-                                @RequestParam String classRoom) {
-
-        ClassRoom classRoom1 = new ClassRoom();
-        classRoom1.setClassRoomName(classRoom);
-
-        teacherService.createTeacher(teacherName, teacherSurname, classRoom1);
+                                @RequestParam String classRoomName) {
+        teacherService.createTeacher(teacherName, teacherSurname, classRoomName);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/";
-    }*/
+    }
 
     @PostMapping("/deleteTeacher")
     public String deleteTeacher(@RequestParam("teacherId") Integer teacherId, RedirectAttributes redirectAttributes) {

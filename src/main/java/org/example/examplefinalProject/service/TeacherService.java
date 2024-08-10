@@ -26,7 +26,10 @@ public class TeacherService {
         return teacherRepository.findById(teacherId).orElse(null);
     }
 
-    public void createTeacher(String teacherName, String teacherSurname, ClassRoom classRoom){
+    public void createTeacher(String teacherName, String teacherSurname, String classRoomName){
+
+        ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
+
         Teacher teacher = Teacher.builder()
                 .teacherName(teacherName)
                 .teacherSurname(teacherSurname)
