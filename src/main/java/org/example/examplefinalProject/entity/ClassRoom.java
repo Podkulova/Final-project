@@ -12,7 +12,7 @@ public class ClassRoom {
 
     private String classRoomName;
 
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacherId")
     private Teacher classTeacher;
 

@@ -50,6 +50,6 @@ public class TeacherController {
         } catch (TeacherNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return "redirect:/";
+        return "redirect:/teacher";
     }
 }
