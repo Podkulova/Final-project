@@ -39,7 +39,7 @@ public class TeacherController {
                                 @RequestParam String classRoomName) {
         teacherService.createTeacher(teacherName, teacherSurname, classRoomName);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
-        return "redirect:/";
+        return "redirect:/teacher";
     }
 
     @PostMapping("/deleteTeacher")
