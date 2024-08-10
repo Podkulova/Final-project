@@ -13,7 +13,7 @@ public class ClassRoom {
     private String classRoomName;
 
     @OneToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
+    @JoinColumn(name = "teacherId")
     private Teacher classTeacher;
 
     @OneToMany(mappedBy = "classRoom")

@@ -2,10 +2,12 @@ package org.example.examplefinalProject.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.entity.ClassRoom;
+import org.example.examplefinalProject.exception.TeacherNotFoundException;
 import org.example.examplefinalProject.service.TeacherService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -34,13 +36,20 @@ public class TeacherController {
     @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String teacherName,
                                 @RequestParam String teacherSurname,
-                                @RequestParam String classRoom) {
-
-        ClassRoom classRoom1 = new ClassRoom();
-        classRoom1.setClassRoomName(classRoom);
-
-        teacherService.createTeacher(teacherName, teacherSurname, classRoom1);
+                                @RequestParam String classRoomName) {
+        teacherService.createTeacher(teacherName, teacherSurname, classRoomName);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
+        return "redirect:/";
+    }
+
+    @PostMapping("/deleteTeacher")
+    public String deleteTeacher(@RequestParam("teacherId") Integer teacherId, RedirectAttributes redirectAttributes) {
+        try {
+            teacherService.deleteTeacher(teacherId);
+            redirectAttributes.addFlashAttribute("message", "Teacher was delete.");
+        } catch (TeacherNotFoundException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
         return "redirect:/";
     }
 }

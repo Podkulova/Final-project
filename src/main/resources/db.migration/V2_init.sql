@@ -100,55 +100,18 @@ VALUES ('2.A', 3);
 INSERT INTO class_room (class_room_name, teacher_id)
 VALUES ('1.B', 2);
 
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Netřídní učitel', 19);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Netřídní učitel', 20);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Asistent třídy', 21);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Asistentka třídy', 22);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Asistent třídy', 23);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Asistentka třídy', 24);
-
-INSERT INTO class_room (class_room_name, teacher_id)
-VALUES ('Asistent třídy', 25);
-
 -- studenti a rodiče
-
-
 
 /*DELETE FROM student WHERE student_id = 19;
 DELETE FROM parent WHERE parent_id = 8;*/
 
-
-
-
 INSERT INTO student (student_name, student_surname, class_room_id)
-VALUES ('Jan', 'Polák', 19);
-INSERT INTO parent (parent_name, parent_surname, parent_email, parent_phone)
-VALUES ('Adam', 'Polák', 'adam.polak@example.com', '+420987456123');
-INSERT INTO parent (parent_name, parent_surname, parent_email, parent_phone)
-VALUES ('Petra', 'Poláková', 'petra.polakova@example.com', '+420603603985');
-INSERT INTO student_parent (student_id, parent_id)
-VALUES (18, 9);
-INSERT INTO student_parent (student_id, parent_id)
-VALUES (18, 10);
-
-INSERT INTO student (student_name, student_surname, class_room_id)
-VALUES ('Anežka', 'Malá', 19);
+VALUES ('Anežka', 'Malá', 18);
 INSERT INTO parent (parent_name, parent_surname, parent_email, parent_phone)
 VALUES ('Tomáš', 'Malej', 'tomas.malej@example.com', '+420603456123');
 INSERT INTO parent (parent_name, parent_surname, parent_email, parent_phone)
 VALUES ('Alice', 'Malá', 'alice.mala@example.com', '+420604603985');
 INSERT INTO student_parent (student_id, parent_id)
-VALUES (20, 11);
+VALUES (1, 1);
 INSERT INTO student_parent (student_id, parent_id)
-VALUES (20, 12);
+VALUES (1, 2);
