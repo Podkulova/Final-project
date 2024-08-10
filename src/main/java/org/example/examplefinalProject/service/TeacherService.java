@@ -9,6 +9,7 @@ import org.example.examplefinalProject.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -42,6 +43,13 @@ public class TeacherService {
     }
 
     public void deleteTeacher(Integer id) {
+        Optional<Teacher> teacher = teacherRepository.findById(id);
+
+        if (teacher.isPresent() && teacher.get().getClassRoom() != null) {
+            ClassRoom classRoom = classRoomRepository.findByClassRoomId(teacher.get().getClassRoom().getClassRoomId());
+            classRoom.setClassTeacher(null);
+            classRoomRepository.save(classRoom);
+        }
         teacherRepository.deleteById(id);
     }
 }
