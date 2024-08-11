@@ -1,24 +1,55 @@
 package org.example.examplefinalProject.service;
 
+import lombok.RequiredArgsConstructor;
+import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Parent;
+import org.example.examplefinalProject.entity.Student;
+import org.example.examplefinalProject.entity.Teacher;
+import org.example.examplefinalProject.exception.InvalidParamsException;
 import org.example.examplefinalProject.repository.ParentRepository;
+import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ParentService {
-    private final ParentRepository parentRepository;
 
-    public ParentService(ParentRepository parentRepository) {
-        this.parentRepository = parentRepository;
-    }
+    private final StudentRepository studentRepository;
+    private final ParentRepository parentRepository;
 
     public List<Parent> findAll(){
         return parentRepository.findAll();
     }
+//    public List<Student> findAll(){
+//        return studentRepository.findAll();
+//    }
 
-    public Parent findById(int id){
-        return parentRepository.findById(id).orElse(null);
+    public Parent findById(Integer parentId){
+        return parentRepository.findById(parentId).orElse(null);
+    }
+//    public Student findById(int id){
+//        return studentRepository.findById(id).orElse(null);
+//    }
+    public void createParent(String parentName, String parentSurname, String parentEmail, String parentPhone, String studentFullName){
+
+        String[] studentNameParts = studentFullName.split(" ");
+
+        Student student = studentRepository.findByStudentNameAndStudentSurname(studentNameParts[0], studentNameParts[1]);
+
+        Parent parent = Parent.builder()
+                .parentName(parentName)
+                .parentSurname(parentSurname)
+                .parentEmail(parentEmail)
+                .parentPhone(parentPhone)
+                .children(Collections.singletonList(student))
+                .build();
+        if (parentName == null || parentSurname == null){
+            throw new InvalidParamsException("ParentName or parentSurname is not null ");
+        }
+        parentRepository.save(parent);
     }
 }

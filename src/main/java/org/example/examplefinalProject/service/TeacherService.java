@@ -19,6 +19,7 @@ public class TeacherService {
 
     private final TeacherRepository teacherRepository;
 
+
     public List<Teacher> findAll() {
         return teacherRepository.findAll();
     }
