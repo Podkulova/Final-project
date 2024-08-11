@@ -5,7 +5,6 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-<!--        <version>3.2.6</version> &lt;!&ndash; Ensure compatibility with Flyway and MySQL &ndash;&gt;-->
         <version>3.2.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
@@ -30,25 +29,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-core</artifactId>-->
-<!--            <version>9.22.0</version> &lt;!&ndash; Use Flyway version compatible with MySQL 8.0 &ndash;&gt;-->
-<!--        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>mysql</groupId>-->
-<!--            <artifactId>mysql-connector-java</artifactId>-->
-<!--            <version>6.0.4</version> &lt;!&ndash; Use MySQL Connector version compatible with MySQL 8.0 &ndash;&gt;-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-
-
 
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -64,8 +51,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.projectlombok</groupId>
