@@ -9,7 +9,6 @@ import org.example.examplefinalProject.repository.StudentRepository;
 import org.example.examplefinalProject.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,14 +22,31 @@ public class ClassRoomService {
     private final TeacherRepository teacherRepository;
     private final TeacherService teacherService;
 
+    /**
+     * Vrací seznam všech tříd.
+     *
+     * @return Seznam tříd.
+     */
     public List<ClassRoom> findAll() {
         return classRoomRepository.findAll();
     }
 
+    /**
+     * Vrací detail třídy.
+     *
+     // @param id Identifikátor třídy.
+     * @return Detail třídy nebo {@code null}.
+     */
     public ClassRoom findById(int classRoomId) {
         return classRoomRepository.findById(classRoomId).orElse(null);
     }
 
+    /**
+     * Vrací počet studentů v dané třídě.
+     *
+     // @param id Identifikátor třídy.
+     * @return Počet studentů.
+     */
     public int studentCountById(int classRoomId) {
         return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
