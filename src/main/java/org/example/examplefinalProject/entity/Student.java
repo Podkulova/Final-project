@@ -3,9 +3,11 @@ package org.example.examplefinalProject.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.Builder;
 import java.util.List;
 
 @Entity
+@Builder
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 public class Student {
 
@@ -23,8 +25,6 @@ public class Student {
     @ManyToMany(mappedBy = "children")
     @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;
-
-    // Getters and setters...
 
     public Integer getStudentId() {
         return studentId;

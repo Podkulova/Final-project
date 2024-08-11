@@ -29,15 +29,15 @@ public class StudentServiceTest {
     private Student student2;
 
     @BeforeEach
-    void setUp() {
-        student1 = new Student();
-        student1.setStudentId(1);
-        student1.setStudentName("Tomáš Marný");
-
-        student2 = new Student();
-        student2.setStudentId(2);
-        student2.setStudentName("Kleopatra Mrtvá");
-    }
+//    void setUp() {
+//        student1 = new Student();
+//        student1.setStudentId(1);
+//        student1.setStudentName("Tomáš Maný");
+//
+//        student2 = new Student();
+//        student2.setStudentId(2);
+//        student2.setStudentName("Kleopatra Mrtvá");
+//    }
 
     @Test
     void testFindAll() {
