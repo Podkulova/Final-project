@@ -3,6 +3,7 @@ package org.example.examplefinalProject.service;
 import lombok.Builder;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
+import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -20,22 +21,25 @@ public class StudentService {
         this.classRoomRepository = classRoomRepository;
     }
 
-    public List<Student> findAll(){
+    public List<Student> findAll() {
         return studentRepository.findAll();
     }
 
-    public Student findById(int id){
+    public Student findById(int id) {
         return studentRepository.findById(id).orElse(null);
     }
 
-    public void createStudent(String studentName, String studentSurname, ClassRoom classRoomName) {
-
+    public void createStudent(String studentName, String studentSurname, String classRoomName) {
+        ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
+        if (classRoom == null) {
+            throw new ClassRoomNotFoundException("Class with name '" + classRoomName + "' was not found.");
+        }
         Student student = Student.builder()
                 .studentName(studentName)
                 .studentSurname(studentSurname)
-                .classRoom(classRoomName)
+                .classRoom(classRoom)
                 .build();
 
-       studentRepository.save(student);
+        studentRepository.save(student);
     }
 }
