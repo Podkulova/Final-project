@@ -1,5 +1,8 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classRoomId")
 public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +23,13 @@ public class ClassRoom {
     private String classRoomName;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacherId")
+    @JoinColumn(name = "teacher_id")
+    @JsonManagedReference
     private Teacher classTeacher;
 
     @OneToMany(mappedBy = "classRoom")
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> students;
 
     public Integer getClassRoomId() {
