@@ -3,9 +3,16 @@ package org.example.examplefinalProject.entity;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "parentId")
 public class Parent {
     @Id
@@ -20,8 +27,8 @@ public class Parent {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_parent",
-            joinColumns = @JoinColumn(name = "parent_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
+            joinColumns = @JoinColumn(name = "parentId"),
+            inverseJoinColumns = @JoinColumn(name = "studentId")
     )
     @OrderBy(value = "studentSurname, studentName")
     private List<Student> children;

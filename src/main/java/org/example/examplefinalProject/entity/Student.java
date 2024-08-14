@@ -2,10 +2,24 @@ package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderBy;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 public class Student {
 
@@ -17,14 +31,12 @@ public class Student {
     private String studentSurname;
 
     @ManyToOne
-    @JoinColumn(name = "class_room_id")
+    @JoinColumn(name = "classRoomId")
     private ClassRoom classRoom;
 
     @ManyToMany(mappedBy = "children")
     @OrderBy(value = "parentSurname, parentName")
     private List<Parent> parents;
-
-    // Getters and setters...
 
     public Integer getStudentId() {
         return studentId;

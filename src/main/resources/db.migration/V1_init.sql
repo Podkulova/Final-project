@@ -1,34 +1,40 @@
+DROP TABLE IF EXISTS student_parent;
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS parent;
+DROP TABLE IF EXISTS class_room;
+DROP TABLE IF EXISTS teacher;
+
 CREATE TABLE teacher
 (
-    teacherId       INT AUTO_INCREMENT PRIMARY KEY,
-    teacherName     VARCHAR(100) NOT NULL,
-    teacherSurname  VARCHAR(100) NOT NULL
+    teacher_id       INT AUTO_INCREMENT PRIMARY KEY,
+    teacher_name     VARCHAR(100) NOT NULL,
+    teacher_surname  VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE classRoom
+CREATE TABLE class_room
 (
-    classRoomId    INT AUTO_INCREMENT PRIMARY KEY,
-    classRoomName  VARCHAR(4) NOT NULL UNIQUE,
-    teacher_id     INT NOT NULL UNIQUE,
-    FOREIGN KEY (teacher_id) REFERENCES teacher (teacherId)
+    class_room_id    INT AUTO_INCREMENT PRIMARY KEY,
+    class_room_name  VARCHAR(40) NOT NULL UNIQUE,
+    teacher_id     INT UNIQUE,
+    FOREIGN KEY (teacher_id) REFERENCES teacher (teacher_id)
 );
 
 CREATE TABLE student
 (
-    studentId       INT AUTO_INCREMENT PRIMARY KEY,
-    studentName     VARCHAR(100) NOT NULL,
-    studentSurname  VARCHAR(100) NOT NULL,
-    classRoom_id    INT NOT NULL,
-    FOREIGN KEY (classRoom_id) REFERENCES classRoom (classRoomId)
+    student_id       INT AUTO_INCREMENT PRIMARY KEY,
+    student_name     VARCHAR(100) NOT NULL,
+    student_surname  VARCHAR(100) NOT NULL,
+    class_room_id    INT NOT NULL,
+    FOREIGN KEY (class_room_id) REFERENCES class_room (class_room_id)
 );
 
 CREATE TABLE parent
 (
-    parentId        INT AUTO_INCREMENT PRIMARY KEY,
-    parentName      VARCHAR(100) NOT NULL,
-    parentSurname   VARCHAR(100) NOT NULL,
-    parentEmail     VARCHAR(100),
-    parentPhone     VARCHAR(13)
+    parent_id        INT AUTO_INCREMENT PRIMARY KEY,
+    parent_name      VARCHAR(100) NOT NULL,
+    parent_surname   VARCHAR(100) NOT NULL,
+    parent_email     VARCHAR(100),
+    parent_phone     VARCHAR(13)
 );
 
 CREATE TABLE student_parent
@@ -36,18 +42,15 @@ CREATE TABLE student_parent
     student_id  INT NOT NULL,
     parent_id   INT NOT NULL,
     PRIMARY KEY (student_id, parent_id),
-    FOREIGN KEY (student_id) REFERENCES student (studentId),
-    FOREIGN KEY (parent_id) REFERENCES parent (parentId)
+    FOREIGN KEY (student_id) REFERENCES student (student_id),
+    FOREIGN KEY (parent_id) REFERENCES parent (parent_id)
 );
 
-
-
-
-CREATE INDEX idx_teacher_name_surname ON teacher (teacherSurname, teacherName);
-CREATE INDEX idx_student_surname_name ON student (studentSurname, studentName);
-CREATE INDEX idx_parent_surname_name ON parent (parentSurname, parentName);
-CREATE INDEX idx_classRoom_name ON classRoom (classRoomName);
-CREATE INDEX idx_classRoom_teacher_id ON classRoom (teacher_id);
-CREATE INDEX idx_student_classRoom_id_surname_name ON student (classRoom_id, studentSurname, studentName);
+CREATE INDEX idx_teacher_name_surname ON teacher (teacher_surname, teacher_name);
+CREATE INDEX idx_student_surname_name ON student (student_surname, student_name);
+CREATE INDEX idx_parent_surname_name ON parent (parent_surname, parent_name);
+CREATE INDEX idx_classRoom_name ON class_room (class_room_name);
+CREATE INDEX idx_classRoom_teacher_id ON class_room (teacher_id);
+CREATE INDEX idx_student_classRoom_id_surname_name ON student (class_room_id, student_surname, student_name);
 CREATE INDEX idx_student_parent_student_id ON student_parent (student_id);
 CREATE INDEX idx_student_parent_parent_id ON student_parent (parent_id);

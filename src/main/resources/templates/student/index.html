@@ -36,5 +36,24 @@
         </tbody>
     </table>
 </div>
+<div class="container">
+    <h2 class="mt-5">Vytvořit nového studenta</h2>
+    <form th:action="@{/student/createStudent}" method="post">
+        <div class="mb-3">
+            <label for="studentName" class="form-label">Jméno</label>
+            <input type="text" class="form-control" id="studentName" name="studentName" required>
+        </div>
+        <div class="mb-3">
+            <label for="studentSurname" class="form-label">Příjmení</label>
+            <input type="text" class="form-control" id="studentSurname" name="studentSurname" required>
+        </div>
+        <div class="mb-3">
+            <label for="classRoomName" class="form-label">Třída</label>
+            <input type="text" class="form-control" id="classRoomName" name="classRoomName" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Vytvořit</button>
+    </form>
+</div>
+
 </body>
 </html>
