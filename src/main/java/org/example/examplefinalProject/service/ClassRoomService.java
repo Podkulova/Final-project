@@ -22,13 +22,18 @@ public class ClassRoomService {
     private final TeacherRepository teacherRepository;
     private final TeacherService teacherService;
 
+    public ClassRoom findById(int classRoomId) {
+        return classRoomRepository.findById(classRoomId).orElse(null);
+    }
+
     /**
      * Vrací seznam všech tříd.
      *
      * @return Seznam tříd.
      */
-    public List<ClassRoom> findAll() {
-        return classRoomRepository.findAll();
+    public ClassRoomService(ClassRoomRepository classRoomRepository, StudentRepository studentRepository) {
+        this.classRoomRepository = classRoomRepository;
+        this.studentRepository = studentRepository;
     }
 
     /**
@@ -37,8 +42,8 @@ public class ClassRoomService {
      // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
-    public ClassRoom findById(int classRoomId) {
-        return classRoomRepository.findById(classRoomId).orElse(null);
+    public List<ClassRoom> findAll() {
+        return classRoomRepository.findAll();
     }
 
     /**

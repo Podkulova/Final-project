@@ -38,7 +38,6 @@ public class TeacherController {
                                 @RequestParam String teacherSurname,
                                 @RequestParam String classRoomName) {
         teacherService.createTeacher(teacherName, teacherSurname, classRoomName);
-        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/teacher";
     }
 
@@ -46,7 +45,7 @@ public class TeacherController {
     public String deleteTeacher(@RequestParam("teacherId") Integer teacherId, RedirectAttributes redirectAttributes) {
         try {
             teacherService.deleteTeacher(teacherId);
-            redirectAttributes.addFlashAttribute("message", "Teacher was delete.");
+            redirectAttributes.addFlashAttribute("message", "Teacher was deleted.");
         } catch (TeacherNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
