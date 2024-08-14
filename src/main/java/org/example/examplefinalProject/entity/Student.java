@@ -1,15 +1,9 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OrderBy;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -34,8 +28,14 @@ public class Student {
     @JoinColumn(name = "classRoomId")
     private ClassRoom classRoom;
 
-    @ManyToMany(mappedBy = "children")
+    @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id")
+    )
     @OrderBy(value = "parentSurname, parentName")
+    @JsonBackReference
     private List<Parent> parents;
 
     public Integer getStudentId() {

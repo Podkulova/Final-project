@@ -1,6 +1,7 @@
 package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,6 @@ public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer parentId;
-
     private String parentName;
     private String parentSurname;
     private String parentEmail;
@@ -27,13 +27,12 @@ public class Parent {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_parent",
-            joinColumns = @JoinColumn(name = "parentId"),
-            inverseJoinColumns = @JoinColumn(name = "studentId")
+            joinColumns = @JoinColumn(name = "parent_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> children;
-
-    // Getters and setters...
 
     public Integer getParentId() {
         return parentId;
