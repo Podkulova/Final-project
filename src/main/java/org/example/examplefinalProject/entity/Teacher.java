@@ -1,11 +1,15 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "teacherId")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +22,7 @@ public class Teacher {
     private String teacherSurname;
 
     @OneToOne(mappedBy = "classTeacher")
+    @JsonBackReference
     private ClassRoom classRoom;
 
     public Integer getTeacherId() {
@@ -60,5 +65,4 @@ public class Teacher {
     public String toString() {
         return String.format("%s %s [%d]", teacherName, teacherSurname, teacherId);
     }
-
 }
