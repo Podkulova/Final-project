@@ -1,7 +1,6 @@
 package org.example.examplefinalProject.service;
 
 import org.example.examplefinalProject.entity.ClassRoom;
-import org.example.examplefinalProject.entity.Student;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,8 @@ public class ClassRoomService {
     private final ClassRoomRepository classRoomRepository;
     private final StudentRepository studentRepository;
 
-    public ClassRoomService(ClassRoomRepository classRoomRepository, StudentRepository studentRepository) {
-        this.classRoomRepository = classRoomRepository;
-        this.studentRepository = studentRepository;
+    public ClassRoom findById(int classRoomId) {
+        return classRoomRepository.findById(classRoomId).orElse(null);
     }
 
     /**
@@ -23,8 +21,9 @@ public class ClassRoomService {
      *
      * @return Seznam tříd.
      */
-    public List<ClassRoom> findAll() {
-        return classRoomRepository.findAll();
+    public ClassRoomService(ClassRoomRepository classRoomRepository, StudentRepository studentRepository) {
+        this.classRoomRepository = classRoomRepository;
+        this.studentRepository = studentRepository;
     }
 
     /**
@@ -33,8 +32,8 @@ public class ClassRoomService {
      // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
-    public ClassRoom findById(int classRoomId) {
-        return classRoomRepository.findById(classRoomId).orElse(null);
+    public List<ClassRoom> findAll() {
+        return classRoomRepository.findAll();
     }
 
     /**
