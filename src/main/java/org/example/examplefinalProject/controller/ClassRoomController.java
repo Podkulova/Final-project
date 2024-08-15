@@ -1,27 +1,31 @@
 package org.example.examplefinalProject.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
-import org.example.examplefinalProject.entity.Teacher;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.example.examplefinalProject.service.StudentService;
+import org.example.examplefinalProject.service.TeacherService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/classRoom")
-@Slf4j
 public class ClassRoomController {
     private final ClassRoomService classRoomService;
     private final StudentService studentService;
+    private final TeacherService teacherService;
 
-    public ClassRoomController(ClassRoomService classRoomService, StudentService studentService) {
+    public ClassRoomController(ClassRoomService classRoomService, StudentService studentService, TeacherService teacherService) {
         this.classRoomService = classRoomService;
         this.studentService = studentService;
+        this.teacherService = teacherService;
     }
 
     @GetMapping("")
@@ -45,10 +49,19 @@ public class ClassRoomController {
 
     @PostMapping("/createClassRoom")
     public String createClassRoom(@RequestParam String classRoomName,
-                                  @RequestParam Teacher classTeacher) {
-
-        classRoomService.createClassRoom(classRoomName, classTeacher);
-         log.info(String.format("User created '%s' '%s'", classRoomName, classTeacher));
-        return "redirect:/";
+                                  @RequestParam String teacherFullName) {
+        classRoomService.createClassRoom(classRoomName, teacherFullName);
+        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
+        return "redirect:/classRoom";
     }
 }
+
+
+
+
+
+
+
+
+
+

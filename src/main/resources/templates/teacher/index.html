@@ -16,6 +16,7 @@
             <th scope="col">Příjmení</th>
             <th scope="col">Třída</th>
             <th scope="col">Detail</th>
+            <th scope="col">Vymazat</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,12 @@
                     <i class="bi bi-arrow-right-square-fill"></i> <img src="images/detail.png" alt="Detail">
                 </a>
             </td>
+            <td>
+                <form th:action="@{/teacher/deleteTeacher}" method="post" onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
+                    <input type="hidden" name="teacherId" th:value="${teacher.teacherId}" />
+                    <button type="submit" class="btn btn-danger">Vymazat</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -51,8 +58,8 @@
             <input type="text" class="form-control" id="teacherSurname" name="teacherSurname" required>
         </div>
         <div class="mb-3">
-            <label for="classRoom" class="form-label">Třída</label>
-            <input type="text" class="form-control" id="classRoom" name="classRoom" required>
+            <label for="classRoomName" class="form-label">Třída</label>
+            <input type="text" class="form-control" id="classRoomName" name="classRoomName" required>
         </div>
         <button type="submit" class="btn btn-primary">Vytvořit</button>
     </form>

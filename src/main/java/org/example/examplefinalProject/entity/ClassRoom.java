@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClassRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class ClassRoom {
 
     private String classRoomName;
 
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacherId")
     private Teacher classTeacher;
 
     @OneToMany(mappedBy = "classRoom")
@@ -63,3 +63,12 @@ public class ClassRoom {
         return classRoomName;
     }
 }
+
+
+
+
+
+
+
+
+

@@ -1,23 +1,28 @@
 package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "parentId")
 public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer parentId;
-
     private String parentName;
     private String parentSurname;
     private String parentEmail;
     private String parentPhone;
-
-    private boolean isDone;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
@@ -26,18 +31,8 @@ public class Parent {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> children;
-
-
-
-    // Getters and setters...
-    public boolean isDone() {
-        return isDone;
-    }
-
-    public void setDone(boolean done) {
-        isDone = done;
-    }
 
     public Integer getParentId() {
         return parentId;
