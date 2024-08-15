@@ -2,6 +2,8 @@ package org.example.examplefinalProject.controller;
 
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
+import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
+import org.example.examplefinalProject.exception.ParentNotFoundExeption;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.example.examplefinalProject.service.StudentService;
 import org.example.examplefinalProject.service.TeacherService;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,6 +56,17 @@ public class ClassRoomController {
         classRoomService.createClassRoom(classRoomName, teacherFullName);
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/classRoom";
+    }
+
+    @PostMapping("/deleteClassRoom")
+    public String deleteClassRoom(@RequestParam("classRoomId") Integer classRoomId, RedirectAttributes redirectAttributes){
+        try {
+            classRoomService.deleteClassRoom(classRoomId);
+            redirectAttributes.addFlashAttribute("message", "ClassRoom was deleted.");
+        } catch (ClassRoomNotFoundException e) {
+            redirectAttributes.addFlashAttribute("error", e.getMessage());
+        }
+        return"redirect:/classRoom";
     }
 }
 

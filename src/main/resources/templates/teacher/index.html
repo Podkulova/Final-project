@@ -39,7 +39,7 @@
             <td>
                 <form th:action="@{/teacher/deleteTeacher}" method="post" onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
                     <input type="hidden" name="teacherId" th:value="${teacher.teacherId}" />
-                    <button type="submit" class="btn btn-danger">Vymazat</button>
+                    <button type="submit" class="btn btn-danger">🗑️</button>
                 </form>
             </td>
         </tr>
