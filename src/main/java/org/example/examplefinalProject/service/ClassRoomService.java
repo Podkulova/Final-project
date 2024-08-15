@@ -71,4 +71,9 @@ public class ClassRoomService {
                 .build();
         classRoomRepository.save(classRoom);
     }
+
+    public void deleteClassRoom(Integer classRoomId) {
+        studentRepository.deleteById(classRoomId);
+        classRoomRepository.deleteById(classRoomId);
+    }
 }

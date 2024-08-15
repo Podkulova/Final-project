@@ -24,7 +24,7 @@ public class Student {
     private String studentName;
     private String studentSurname;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "classRoomId")
     private ClassRoom classRoom;
 
