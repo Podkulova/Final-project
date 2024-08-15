@@ -38,8 +38,8 @@ public class ParentRestController {
         }
     }
 
-    @DeleteMapping("/deleteParent")
-    public ResponseEntity<String> deleteParent(@RequestParam Integer parentId) {
+    @DeleteMapping("/deleteParent/{parentId}")
+    public ResponseEntity<String> deleteParent(@PathVariable Integer parentId) {
         parentService.deleteParent(parentId);
         return ResponseEntity.noContent().build();
     }

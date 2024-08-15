@@ -33,8 +33,8 @@ public class TeacherRestController {
         }
     }
 
-    @DeleteMapping("/deleteTeacher")
-    public ResponseEntity<String> deleteTeacher(@RequestParam Integer teacherId) {
+    @DeleteMapping("/deleteTeacher/{teacherId}")
+    public ResponseEntity<String> deleteTeacher(@PathVariable Integer teacherId) {
         teacherService.deleteTeacher(teacherId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
