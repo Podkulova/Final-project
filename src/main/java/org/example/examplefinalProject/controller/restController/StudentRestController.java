@@ -38,4 +38,10 @@ public class StudentRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/deleteStudent/{studentId}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Integer studentId) {
+        studentService.deleteStudent(studentId);
+        return ResponseEntity.noContent().build();
+    }
 }
