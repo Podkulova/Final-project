@@ -25,13 +25,13 @@ public class ParentRestController {
 
     @GetMapping("")
     public ResponseEntity<List<Parent>> index() {
-       return ResponseEntity.ok(parentService.findAll());
+        return ResponseEntity.ok(parentService.findAll());
     }
 
     @GetMapping("/{parentId}")
-    public ResponseEntity<Parent> detail(@PathVariable int parentId){
+    public ResponseEntity<Parent> detail(@PathVariable int parentId) {
         Parent parent = parentService.findById(parentId);
-        if (parent !=null){
+        if (parent != null) {
             return ResponseEntity.ok(parent);
         } else {
             return ResponseEntity.notFound().build();
@@ -39,8 +39,8 @@ public class ParentRestController {
     }
 
     @DeleteMapping("/deleteParent")
-    public ResponseEntity<String> delete(@RequestParam Integer parentId) {
-        parentService.delete(parentId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<String> deleteParent(@RequestParam Integer parentId) {
+        parentService.deleteParent(parentId);
+        return ResponseEntity.noContent().build();
     }
 }

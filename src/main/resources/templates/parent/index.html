@@ -15,6 +15,7 @@
             <th scope="col">Jméno</th>
             <th scope="col">Příjmení</th>
             <th scope="col">Detail</th>
+            <th scope="col">Vymazat</th>
         </tr>
         </thead>
         <tbody>
@@ -27,9 +28,9 @@
                 </a>
             </td>
             <td>
-                <form th:action="@{/deleteParent}" method="POST">
+                <form th:action="@{/parent/deleteParent}" method="post" onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
                     <input type="hidden" name="parentId" th:value="${parent.parentId}" />
-                    <button type="submit">Vymazat</button>
+                    <button type="submit" class="btn btn-danger">🗑️</button>
                 </form>
             </td>
         </tr>
