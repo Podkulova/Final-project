@@ -51,9 +51,11 @@ public class ClassRoomController {
     }
 
     @PostMapping("/createClassRoom")
-    public String createClassRoom(@RequestParam String classRoomName,
-                                  @RequestParam String teacherFullName) {
-        classRoomService.createClassRoom(classRoomName, teacherFullName);
+    public String createClassRoom(@RequestParam String teacherFullName,
+                                  @RequestParam Integer classRoomId) {
+
+        ClassRoom classRoom = classRoomService.findById(classRoomId);
+        classRoomService.createClassRoom(teacherFullName, classRoom.getClassRoomName());
         //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
         return "redirect:/classRoom";
     }

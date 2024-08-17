@@ -3,26 +3,33 @@ package org.example.examplefinalProject.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.exception.TeacherNotFoundException;
+import org.example.examplefinalProject.service.ClassRoomService;
 import org.example.examplefinalProject.service.TeacherService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @Slf4j
 @RequestMapping("/teacher")
 public class TeacherController {
     private final TeacherService teacherService;
+    private final ClassRoomService classRoomService;
 
-    public TeacherController(TeacherService teacherService) {
+    public TeacherController(TeacherService teacherService, ClassRoomService classRoomService) {
         this.teacherService = teacherService;
+        this.classRoomService = classRoomService;
     }
 
     @GetMapping("")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/teacher/index");
         modelAndView.addObject("teacherList", teacherService.findAll());
+        modelAndView.addObject("classRoomList", classRoomService.findAll());
         return modelAndView;
     }
 
@@ -32,12 +39,21 @@ public class TeacherController {
         modelAndView.addObject("teacher", teacherService.findById(teacherId));
         return modelAndView;
     }
-
+    @GetMapping("/teacher/createTeacher")
+    public String showCreateTeacherForm(Model model) {
+        List<ClassRoom> classRoomList = classRoomService.findAll();
+        model.addAttribute("classRoomList", classRoomList);
+        return "createTeacher";
+    }
     @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String teacherName,
                                 @RequestParam String teacherSurname,
-                                @RequestParam String classRoomName) {
-        teacherService.createTeacher(teacherName, teacherSurname, classRoomName);
+                                @RequestParam Integer classRoomId,
+                                RedirectAttributes redirectAttributes) {
+
+        ClassRoom classRoom = classRoomService.findById(classRoomId);
+        teacherService.createTeacher(teacherName, teacherSurname, classRoom.getClassRoomName());
+        redirectAttributes.addFlashAttribute("message", "Student was created.");
         return "redirect:/teacher";
     }
 

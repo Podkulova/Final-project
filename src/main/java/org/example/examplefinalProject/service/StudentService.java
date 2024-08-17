@@ -32,6 +32,7 @@ public class StudentService {
     }
 
     public void createStudent(String studentName, String studentSurname, String classRoomName) {
+
         ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
         if (classRoom == null) {
             throw new ClassRoomNotFoundException("Class with name '" + classRoomName + "' was not found.");
