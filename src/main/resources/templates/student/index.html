@@ -16,6 +16,7 @@
             <th scope="col">Příjmení</th>
             <th scope="col">Třída</th>
             <th scope="col">Detail</th>
+            <th scope="col">Vymazat</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,12 @@
                 <a th:href="@{/student/{id}(id=${student.studentId})}">
                     <i class="bi bi-arrow-right-square-fill"></i> <img src="images/detail.png" alt="Detail">
                 </a>
+            </td>
+            <td>
+                <form th:action="@{/student/deleteStudent}" method="post" onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
+                    <input type="hidden" name="studentId" th:value="${student.studentId}" />
+                    <button type="submit" class="btn btn-danger">🗑️</button>
+                </form>
             </td>
         </tr>
         </tbody>
