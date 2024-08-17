@@ -1,7 +1,6 @@
 package org.example.examplefinalProject.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.exception.TeacherNotFoundException;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.example.examplefinalProject.service.TeacherService;

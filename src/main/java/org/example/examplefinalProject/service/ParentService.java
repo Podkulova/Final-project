@@ -29,17 +29,19 @@ public class ParentService {
     public List<Parent> findAll() {
         return parentRepository.findAll();
     }
-//    public List<Student> findAll(){
-//        return studentRepository.findAll();
-//    }
+
+    public List<Student> findAllStudent() {
+        return studentRepository.findAll();
+    }
 
     public Parent findById(Integer parentId) {
         return parentRepository.findById(parentId).orElse(null);
     }
 
-    //    public Student findById(int id){
-//        return studentRepository.findById(id).orElse(null);
-//    }
+    public Student findById(int id) {
+        return studentRepository.findById(id).orElse(null);
+    }
+
     public void createParent(String parentName, String parentSurname, String parentEmail, String parentPhone, String studentFullName) {
 
         String[] studentNameParts = studentFullName.split(" ");
@@ -60,6 +62,6 @@ public class ParentService {
     }
 
     public void deleteParent(Integer parentId) {
-       parentRepository.deleteById(parentId);
+        parentRepository.deleteById(parentId);
     }
 }
