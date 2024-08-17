@@ -26,6 +26,11 @@ public class ClassRoom {
     @OrderBy(value = "studentSurname, studentName")
     private List<Student> students;
 
+    public ClassRoom(Integer classRoomId, String classRoomName) {
+        this.classRoomId = classRoomId;
+        this.classRoomName = classRoomName;
+    }
+
     public Integer getClassRoomId() {
         return classRoomId;
     }

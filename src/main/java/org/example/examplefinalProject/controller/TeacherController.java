@@ -19,7 +19,7 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("/teacher/index");
         modelAndView.addObject("teacherList", teacherService.findAll());
