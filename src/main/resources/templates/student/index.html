@@ -24,7 +24,7 @@
             <td th:text="${student.studentName}">Student Name</td>
             <td th:text="${student.studentSurname}">Student Surname</td>
             <td>
-                <a th:href="@{/student/{id}(id=${student.classRoom})}">
+                <a th:href="@{/classRoom/{id}(id=${student.classRoom.classRoomId})}" th:text="${student.classRoom.classRoomName}">
                     Třída  <i class="bi bi-arrow-right-square-fill"></i>
                 </a>
             </td>
@@ -55,8 +55,15 @@
             <input type="text" class="form-control" id="studentSurname" name="studentSurname" required>
         </div>
         <div class="mb-3">
-            <label for="classRoomName" class="form-label">Třída</label>
-            <input type="text" class="form-control" id="classRoomName" name="classRoomName" required>
+            <label for="classRoomId" class="form-label">Třída</label>
+            <select class="form-control" id="classRoomId" name="classRoomId" required>
+                <option value="" disabled selected>Vyberte třídu</option>
+                <option th:each="classRoom : ${classRoomList}"
+                        th:value="${classRoom.classRoomId}"
+                        th:text="${classRoom.classRoomName}">
+                    ClassRoom Name
+                </option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Vytvořit</button>
     </form>
