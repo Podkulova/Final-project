@@ -1,5 +1,6 @@
 package org.example.examplefinalProject.service;
 
+import ch.qos.logback.core.model.Model;
 import lombok.Builder;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
@@ -7,6 +8,7 @@ import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
