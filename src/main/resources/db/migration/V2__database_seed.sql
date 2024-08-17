@@ -1,4 +1,4 @@
-USE finalProject;
+USE defaultdb;
 
 -- Insert data into Teachers table
 INSERT INTO teacher (teacher_name, teacher_surname) VALUES
