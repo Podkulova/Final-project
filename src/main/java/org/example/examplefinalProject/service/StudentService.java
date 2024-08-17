@@ -21,6 +21,11 @@ public class StudentService {
         this.classRoomRepository = classRoomRepository;
     }
 
+    // potřeba pro combo box
+    public List<Student> searchByQuery(String query) {
+        return studentRepository.findByStudentNameContainingIgnoreCase(query);
+    }
+
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
