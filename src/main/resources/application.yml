@@ -21,7 +21,8 @@ spring:
     max-idle: 10
     max-wait: 8000
   flyway:
-    baselineOnMigrate: true
+    baseline-on-migrate: true
+    out-of-order: true
     url: jdbc:mysql://localhost:3306
     schemas: finalProject
     user: root
