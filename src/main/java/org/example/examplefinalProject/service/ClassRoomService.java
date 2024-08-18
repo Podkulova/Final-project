@@ -33,8 +33,9 @@ public class ClassRoomService {
 
     /**
      * Vrací detail třídy.
+     * <p>
+     * // @param id Identifikátor třídy.
      *
-     // @param id Identifikátor třídy.
      * @return Detail třídy nebo {@code null}.
      */
     public ClassRoom findById(int classRoomId) {
@@ -43,15 +44,15 @@ public class ClassRoomService {
 
     /**
      * Vrací počet studentů v dané třídě.
+     * <p>
+     * // @param id Identifikátor třídy.
      *
-     // @param id Identifikátor třídy.
      * @return Počet studentů.
      */
     public int studentCountById(int classRoomId) {
         return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
-
-    public void createClassRoom(String classRoomName, String teacherFullName) {
+public void createClassRoom(String classRoomName, String teacherFullName) {
         if (classRoomName == null) {
             throw new InvalidParamsException("ClassRoomName is null ");
         }

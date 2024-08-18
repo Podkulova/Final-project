@@ -37,7 +37,7 @@ public class ParentService {
         return parentRepository.findById(parentId).orElse(null);
     }
 
-    //    public Student findById(int id){
+    //    public Student findById(int id) {
 //        return studentRepository.findById(id).orElse(null);
 //    }
     public void createParent(String parentName, String parentSurname, String parentEmail, String parentPhone, String studentFullName) {

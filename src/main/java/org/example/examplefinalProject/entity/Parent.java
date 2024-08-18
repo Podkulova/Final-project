@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
@@ -33,58 +35,6 @@ public class Parent {
     @OrderBy(value = "studentSurname, studentName")
     @JsonManagedReference
     private List<Student> children;
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getParentSurname() {
-        return parentSurname;
-    }
-
-    public void setParentSurname(String parentSurname) {
-        this.parentSurname = parentSurname;
-    }
-
-    public String getParentEmail() {
-        return parentEmail;
-    }
-
-    public void setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
-    }
-
-    public String getParentPhone() {
-        return parentPhone;
-    }
-
-    public void setParentPhone(String parentPhone) {
-        this.parentPhone = parentPhone;
-    }
-
-    public List<Student> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Student> children) {
-        this.children = children;
-    }
-
-    public String getParentFullName() {
-        return parentName + " " + parentSurname;
-    }
 
     @Override
     public String toString() {

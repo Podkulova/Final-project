@@ -6,7 +6,6 @@ import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor

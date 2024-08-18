@@ -12,19 +12,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ParentController {
     private final ParentService parentService;
 
-    public ParentController(ParentService parentService){
+    public ParentController(ParentService parentService) {
         this.parentService = parentService;
     }
 
     @GetMapping("")
-    public ModelAndView index(){
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("parent/index");
         modelAndView.addObject("parentList", parentService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/{parentId}")
-    public ModelAndView detail(@PathVariable int parentId){
+    public ModelAndView detail(@PathVariable int parentId) {
         ModelAndView modelAndView = new ModelAndView("parent/detail");
         modelAndView.addObject("parent", parentService.findById(parentId));
         return modelAndView;

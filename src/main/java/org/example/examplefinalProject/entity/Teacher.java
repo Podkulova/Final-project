@@ -7,7 +7,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.Data;
 
+@Data
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "teacherId")
 @Builder
@@ -24,42 +26,6 @@ public class Teacher {
     @OneToOne(mappedBy = "classTeacher")
     @JsonBackReference
     private ClassRoom classRoom;
-
-    public Integer getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    public String getTeacherSurname() {
-        return teacherSurname;
-    }
-
-    public void setTeacherSurname(String teacherSurname) {
-        this.teacherSurname = teacherSurname;
-    }
-
-    public ClassRoom getClassRoom() {
-        return classRoom;
-    }
-
-    public void setClassRoom(ClassRoom classRoom) {
-        this.classRoom = classRoom;
-    }
-
-    public String getTeacherFullName() {
-        return teacherName + " " + teacherSurname;
-    }
 
     @Override
     public String toString() {

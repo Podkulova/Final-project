@@ -39,4 +39,3 @@ public class TeacherRestController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

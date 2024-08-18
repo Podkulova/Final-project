@@ -8,7 +8,6 @@ import org.example.examplefinalProject.service.MyCustomMapper;
 import org.example.examplefinalProject.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -44,7 +43,6 @@ public class StudentRestController {
         List<Student> students = studentService.findByClassRoomId(classRoomId);
         if (students != null && !students.isEmpty()) {
             return ResponseEntity.ok(students);
-
         } else {
             return ResponseEntity.noContent().build();
         }
