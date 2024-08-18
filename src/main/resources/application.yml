@@ -8,6 +8,7 @@ spring:
 
   application:
     name: flywayapp
+
   datasource:
     url: jdbc:mysql://mysql-36bc738e-dasa-9d4f.i.aivencloud.com:28561/defaultdb
     username: avnadmin
@@ -28,3 +29,5 @@ spring:
     user: avnadmin
     password: ${MYSQLDB_ROOT_PASSWORD}
 
+public:
+  endpoints: "/, /login, /student, /teacher, /classRoom, /parent"
