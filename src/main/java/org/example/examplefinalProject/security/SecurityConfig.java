@@ -29,24 +29,22 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()  // Veřejný přístup k autentizačním API
-                        // Přístup pro učitele
-                        .requestMatchers("/api/teacher/**").hasRole("TEACHER")
-                        // Přístup pro žáky
-                        .requestMatchers("/api/student/**").hasRole("STUDENT")
-                        // Přístup pro rodiče
-                        .requestMatchers("/api/parent/**").hasRole("PARENT")
-                        // Specifické přístupy podle rolí
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/teacher/**").hasRole("ADMIN")
+                        .requestMatchers("/api/student/**").hasRole("USER")
+                        .requestMatchers("/api/parent/**").hasRole("USER")
                         .requestMatchers("/api/user/deleteUserAsAdmin").hasRole("ADMIN")
                         .requestMatchers("/api/user/getAllUsersAsAdmin").hasRole("ADMIN")
-                        .requestMatchers("/api/user/delete").hasAnyRole("TEACHER", "PARENT", "STUDENT")
-                        .anyRequest().authenticated()   // Ostatní požadavky vyžadují autentizaci
+                        .requestMatchers("/api/user/delete").hasAnyRole("ADMIN")
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
