@@ -40,7 +40,16 @@ public class TeacherService {
         if (teacherName == null || teacherSurname == null){
             throw new InvalidParamsException("TeacherName or teacherSurname is not null ");
         }
-        return teacherRepository.save(teacher);
+        // ulozenim noveho teachera do db ziskame jeho id
+        Teacher savedTeacher = teacherRepository.save(teacher);
+
+        // toto je pro uložení učitele (teacher_id) do classRoomy
+        classRoom.setClassTeacher(savedTeacher);
+
+        // ulozime classroom s teacher_id
+        classRoomRepository.save(classRoom);
+
+        return savedTeacher;
     }
 
     public void deleteTeacher(Integer id) {

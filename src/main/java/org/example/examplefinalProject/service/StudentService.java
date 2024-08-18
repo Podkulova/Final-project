@@ -1,5 +1,6 @@
 package org.example.examplefinalProject.service;
 
+import ch.qos.logback.core.model.Model;
 import lombok.Builder;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Student;
@@ -7,6 +8,7 @@ import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
 import org.example.examplefinalProject.repository.ClassRoomRepository;
 import org.example.examplefinalProject.repository.StudentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -21,6 +23,11 @@ public class StudentService {
         this.classRoomRepository = classRoomRepository;
     }
 
+    // potřeba pro combo box
+    public List<Student> searchByQuery(String query) {
+        return studentRepository.findByStudentNameContainingIgnoreCase(query);
+    }
+
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
@@ -30,6 +37,7 @@ public class StudentService {
     }
 
     public void createStudent(String studentName, String studentSurname, String classRoomName) {
+
         ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
         if (classRoom == null) {
             throw new ClassRoomNotFoundException("Class with name '" + classRoomName + "' was not found.");
