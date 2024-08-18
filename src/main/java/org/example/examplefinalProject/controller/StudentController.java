@@ -2,7 +2,6 @@ package org.example.examplefinalProject.controller;
 
 import lombok.Builder;
 import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
-import org.example.examplefinalProject.exception.ParentNotFoundExeption;
 import org.example.examplefinalProject.exception.StudentNotFoundExeption;
 import org.example.examplefinalProject.service.StudentService;
 import org.springframework.stereotype.Controller;
@@ -53,13 +52,13 @@ public class StudentController {
     }
 
     @PostMapping("/deleteStudent")
-    public String deleteStudent(@RequestParam("studentId") Integer studentId, RedirectAttributes redirectAttributes){
+    public String deleteStudent(@RequestParam("studentId") Integer studentId, RedirectAttributes redirectAttributes) {
         try {
             studentService.deleteStudent(studentId);
             redirectAttributes.addFlashAttribute("message", "Student was deleted.");
         } catch (StudentNotFoundExeption e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return"redirect:/student";
+        return "redirect:/student";
     }
 }

@@ -9,4 +9,5 @@ public record StudentDTO(
         String studentFullName,
         ClassRoomDTO classRoom,
         List<ParentDTO> parents
-) {}
+) {
+}

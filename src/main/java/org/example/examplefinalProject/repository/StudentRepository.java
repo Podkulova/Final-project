@@ -13,7 +13,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     List<Student> findByClassRoomClassRoomId(Integer classRoomId);
 
-    int countByStudentId (Integer studentId);
+    int countByStudentId(Integer studentId);
 
-    Student findByStudentNameAndStudentSurname (String studentName, String studentSurname);
+    Student findByStudentNameAndStudentSurname(String studentName, String studentSurname);
 }

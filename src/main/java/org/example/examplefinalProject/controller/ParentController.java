@@ -3,7 +3,11 @@ package org.example.examplefinalProject.controller;
 import org.example.examplefinalProject.exception.ParentNotFoundExeption;
 import org.example.examplefinalProject.service.ParentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +33,7 @@ public class ParentController {
         modelAndView.addObject("parent", parentService.findById(parentId));
         return modelAndView;
     }
+
     @PostMapping("/createParent")
     public String createParent(@RequestParam String parentName,
                                @RequestParam String parentSurname,
@@ -41,13 +46,13 @@ public class ParentController {
     }
 
     @PostMapping("/deleteParent")
-    public String deleteParent(@RequestParam("parentId") Integer parentId, RedirectAttributes redirectAttributes){
+    public String deleteParent(@RequestParam("parentId") Integer parentId, RedirectAttributes redirectAttributes) {
         try {
             parentService.deleteParent(parentId);
             redirectAttributes.addFlashAttribute("message", "Parent was deleted.");
         } catch (ParentNotFoundExeption e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return"redirect:/parent";
+        return "redirect:/parent";
     }
 }

@@ -28,7 +28,7 @@ public class TeacherService {
         return teacherRepository.findById(teacherId).orElse(null);
     }
 
-    public Teacher createTeacher(String teacherName, String teacherSurname, String classRoomName){
+    public Teacher createTeacher(String teacherName, String teacherSurname, String classRoomName) {
 
         ClassRoom classRoom = classRoomRepository.findByClassRoomName(classRoomName);
 
@@ -37,7 +37,7 @@ public class TeacherService {
                 .teacherSurname(teacherSurname)
                 .classRoom(classRoom)
                 .build();
-        if (teacherName == null || teacherSurname == null){
+        if (teacherName == null || teacherSurname == null) {
             throw new InvalidParamsException("TeacherName or teacherSurname is not null ");
         }
         return teacherRepository.save(teacher);

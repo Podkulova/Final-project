@@ -8,4 +8,5 @@ public record ParentDTO(
         String parentEmail,
         String parentPhone,
         String parentFullName
-) {}
+) {
+}

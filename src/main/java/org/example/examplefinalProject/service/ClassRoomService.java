@@ -52,7 +52,8 @@ public class ClassRoomService {
     public int studentCountById(int classRoomId) {
         return studentRepository.countByClassRoomClassRoomId(classRoomId);
     }
-public void createClassRoom(String classRoomName, String teacherFullName) {
+
+    public void createClassRoom(String classRoomName, String teacherFullName) {
         if (classRoomName == null) {
             throw new InvalidParamsException("ClassRoomName is null ");
         }

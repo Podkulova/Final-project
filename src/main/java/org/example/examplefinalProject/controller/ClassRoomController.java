@@ -1,9 +1,7 @@
 package org.example.examplefinalProject.controller;
 
 import org.example.examplefinalProject.entity.ClassRoom;
-import org.example.examplefinalProject.entity.Student;
 import org.example.examplefinalProject.exception.ClassRoomNotFoundException;
-import org.example.examplefinalProject.exception.ParentNotFoundExeption;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.example.examplefinalProject.service.StudentService;
 import org.example.examplefinalProject.service.TeacherService;
@@ -57,14 +55,14 @@ public class ClassRoomController {
     }
 
     @PostMapping("/deleteClassRoom")
-    public String deleteClassRoom(@RequestParam("classRoomId") Integer classRoomId, RedirectAttributes redirectAttributes){
+    public String deleteClassRoom(@RequestParam("classRoomId") Integer classRoomId, RedirectAttributes redirectAttributes) {
         try {
             classRoomService.deleteClassRoom(classRoomId);
             redirectAttributes.addFlashAttribute("message", "ClassRoom was deleted.");
         } catch (ClassRoomNotFoundException e) {
             redirectAttributes.addFlashAttribute("error", e.getMessage());
         }
-        return"redirect:/classRoom";
+        return "redirect:/classRoom";
     }
 }
 
