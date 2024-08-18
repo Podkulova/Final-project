@@ -1,17 +1,35 @@
 package org.example.examplefinalProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderBy;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "parentId")
 public class Parent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer parentId;
-
     private String parentName;
     private String parentSurname;
     private String parentEmail;
@@ -24,57 +42,8 @@ public class Parent {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     @OrderBy(value = "studentSurname, studentName")
+    @JsonManagedReference
     private List<Student> children;
-
-    // Getters and setters...
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getParentSurname() {
-        return parentSurname;
-    }
-
-    public void setParentSurname(String parentSurname) {
-        this.parentSurname = parentSurname;
-    }
-
-    public String getParentEmail() {
-        return parentEmail;
-    }
-
-    public void setParentEmail(String parentEmail) {
-        this.parentEmail = parentEmail;
-    }
-
-    public String getParentPhone() {
-        return parentPhone;
-    }
-
-    public void setParentPhone(String parentPhone) {
-        this.parentPhone = parentPhone;
-    }
-
-    public List<Student> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Student> children) {
-        this.children = children;
-    }
 
     public String getParentFullName() {
         return parentName + " " + parentSurname;

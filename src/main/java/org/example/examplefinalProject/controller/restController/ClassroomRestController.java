@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.service.ClassRoomService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +40,11 @@ public class ClassroomRestController {
     public ResponseEntity<Integer> getStudentCountByClassRoomId(@PathVariable int classRoomId) {
         int count = classRoomService.studentCountById(classRoomId);
         return ResponseEntity.ok(count);
+    }
+
+    @DeleteMapping("/deleteClassRoom/{classRoomId}")
+    public ResponseEntity<String> deleteClassRoom(@PathVariable Integer classRoomId) {
+        classRoomService.deleteClassRoom(classRoomId);
+        return ResponseEntity.noContent().build();
     }
 }

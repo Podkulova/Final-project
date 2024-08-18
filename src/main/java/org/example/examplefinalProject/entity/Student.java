@@ -1,11 +1,30 @@
 package org.example.examplefinalProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OrderBy;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "studentId")
 public class Student {
 
@@ -16,55 +35,19 @@ public class Student {
     private String studentName;
     private String studentSurname;
 
-    @ManyToOne
-    @JoinColumn(name = "class_room_id")
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "classRoomId")
     private ClassRoom classRoom;
 
-    @ManyToMany(mappedBy = "children")
+    @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id")
+    )
     @OrderBy(value = "parentSurname, parentName")
+    @JsonBackReference
     private List<Parent> parents;
-
-    // Getters and setters...
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer id) {
-        this.studentId = id;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String name) {
-        this.studentName = name;
-    }
-
-    public String getStudentSurname() {
-        return studentSurname;
-    }
-
-    public void setStudentSurname(String surname) {
-        this.studentSurname = surname;
-    }
-
-    public ClassRoom getClassRoom() {
-        return classRoom;
-    }
-
-    public void setClassRoom(ClassRoom classRoom) {
-        this.classRoom = classRoom;
-    }
-
-    public List<Parent> getParents() {
-        return parents;
-    }
-
-    public void setParents(List<Parent> parents) {
-        this.parents = parents;
-    }
 
     public String getFullName() {
         return studentName + " " + studentSurname;
