@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.examplefinalProject.service.CustomUserDetailsService;
 import org.example.examplefinalProject.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,7 +33,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
 
     @Value("${public.endpoints}")
-    private String[] publicEndpoints;
+    private List<String> publicEndpoints;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -40,7 +42,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String requestURI = request.getRequestURI();
 
         // Check if the requestURI is in the list of public endpoints
-        if (Arrays.asList(publicEndpoints).contains(requestURI)) {
+        if (publicEndpoints.contains(requestURI)) {
             chain.doFilter(request, response);
             return;
         }

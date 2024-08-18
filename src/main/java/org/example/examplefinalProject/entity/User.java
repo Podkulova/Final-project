@@ -6,12 +6,11 @@ import lombok.*;
 import java.util.List;
 
 
-@Entity
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class User {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -23,7 +22,4 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Student> reviews;
 }
