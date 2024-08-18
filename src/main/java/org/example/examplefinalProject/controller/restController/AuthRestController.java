@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -21,12 +24,22 @@ public class AuthRestController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@Valid @RequestBody UserRegisterDto registerRequest) {
+    public ResponseEntity<Map<String, String>> register(@Valid @RequestBody UserRegisterDto registerRequest) {
         try {
             authService.register(registerRequest);
-            return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+
+            // Vrátí URL přihlašovací stránky jako součást odpovědi
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "User registered successfully");
+            response.put("redirectUrl", "/login"); // URL přihlašovací stránky
+
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            // Vrátí chybovou zprávu v případě selhání
+            Map<String, String> response = new HashMap<>();
+            response.put("error", e.getMessage());
+
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
 
