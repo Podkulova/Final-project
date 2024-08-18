@@ -26,7 +26,7 @@ public class ParentRestController {
         return ResponseEntity.ok(parentService.findAll());
     }
 
-    @GetMapping("/{parentId}")
+    /*@GetMapping("/{parentId}")
     public ResponseEntity<Parent> detail(@PathVariable int parentId) {
         Parent parent = parentService.findById(parentId);
         if (parent != null) {
@@ -34,7 +34,7 @@ public class ParentRestController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }*/
 
     @DeleteMapping("/deleteParent/{parentId}")
     public ResponseEntity<String> deleteParent(@PathVariable Integer parentId) {

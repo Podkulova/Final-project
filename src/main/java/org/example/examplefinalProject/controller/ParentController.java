@@ -1,23 +1,35 @@
 package org.example.examplefinalProject.controller;
 
+import lombok.Builder;
+import org.example.examplefinalProject.entity.Student;
 import org.example.examplefinalProject.exception.ParentNotFoundExeption;
 import org.example.examplefinalProject.service.ParentService;
+import org.example.examplefinalProject.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
+@Builder
 @RequestMapping("/parent")
 public class ParentController {
     private final ParentService parentService;
+    private final StudentService studentService;
 
     public ParentController(ParentService parentService) {
+
+    public ParentController(ParentService parentService, StudentService studentService){
         this.parentService = parentService;
+        this.studentService = studentService;
     }
 
     @GetMapping("")
@@ -32,6 +44,14 @@ public class ParentController {
         ModelAndView modelAndView = new ModelAndView("parent/detail");
         modelAndView.addObject("parent", parentService.findById(parentId));
         return modelAndView;
+    }
+
+
+    @GetMapping("/parent/createParent")
+    public String showCreateParentForm(Model model) {
+        List<Student> studentList = studentService.findAll();
+        model.addAttribute("studentList", studentList);
+        return "createParent";
     }
 
     @PostMapping("/createParent")

@@ -23,13 +23,21 @@
                     <td th:text="${parent.parentName}">Parent Name</td>
                     <td th:text="${parent.parentSurname}">Parent Surname</td>
                     <td>
+
                         <a th:href="@{/parent/{id}(id=${parent.parentId})}">  <img src="images/detail.png" alt="Detail">
+
+                        <a th:href="@{/parent/{id}(id=${parent.parentId})}"> <img src="images/detail.png" alt="Detail">
+
                             <i class="bi bi-arrow-right-square-fill"></i>
                         </a>
                     </td>
                     <td>
+
                         <form th:action="@{/parent/deleteParent}" method="post" onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
                             <input type="hidden" name="parentId" th:value="${parent.parentId}" />
+                        <form th:action="@{/parent/deleteParent}" method="post"
+                            onsubmit="return confirm('Opravdu chcete smazat tohoto učitele?');">
+                            <input type="hidden" name="parentId" th:value="${parent.parentId}"/>
                             <button type="submit" class="btn btn-danger">🗑️</button>
                         </form>
                     </td>
@@ -37,6 +45,7 @@
             </tbody>
         </table>
     </div>
+
     <div class="container">
         <h2 class="mt-5">Vytvořit nového rodiče</h2>
         <form th:action="@{/parent/createParent}" method="post">
@@ -57,11 +66,39 @@
                 <input type="text" class="form-control" id="parentPhone" name="parentPhone" required>
             </div>
             <div class="mb-3">
+
                 <label for="studentFullName" class="form-label">Jméno studenta</label>
                 <input type="text" class="form-control" id="studentFullName" name="studentFullName" required>
+                <label for="studentFullNameId" class="form-label">Student</label>
+                <input list="studentOptionsId" class="form-control" id="studentFullNameId" name="studentFullName"
+                   placeholder="Začněte psát jméno studenta...">
+                <datalist id="studentOptionsId">
+                    <option th:each="student : ${studentList}"
+                        th:value="${student.fullName}"
+                        th:text="${student.fullName}">
+                    </option>
+                </datalist>
             </div>
             <button type="submit" class="btn btn-primary">Vytvořit</button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('studentFullNameId').addEventListener('input', function () {
+            let query = this.value;
+            fetch('/student/search?query=' + query)
+                .then(response => response.json())
+                .then(data => {
+                    let datalist = document.getElementById('studentOptionsId');
+                    datalist.innerHTML = ''; // Vymaže předchozí výsledky
+                    data.forEach(student => {
+                    let option = document.createElement('option');
+                    option.value = student.fullName;
+                    option.textContent = student.fullName;
+                    datalist.appendChild(option);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
