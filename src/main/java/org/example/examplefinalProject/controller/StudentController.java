@@ -42,9 +42,7 @@ public class StudentController {
         return students;
     }
 
-
     private final ClassRoomService classRoomService;
-
 
     public StudentController(StudentService studentService, ClassRoomService classRoomService) {
         this.studentService = studentService;
