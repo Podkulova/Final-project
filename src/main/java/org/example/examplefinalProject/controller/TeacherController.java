@@ -39,23 +39,23 @@ public class TeacherController {
         modelAndView.addObject("teacher", teacherService.findById(teacherId));
         return modelAndView;
     }
-    @GetMapping("/teacher/createTeacher")
-    public String showCreateTeacherForm(Model model) {
-        List<ClassRoom> classRoomList = classRoomService.findAll();
-        model.addAttribute("classRoomList", classRoomList);
-        return "createTeacher";
-    }
-    @PostMapping("/createTeacher")
-    public String createTeacher(@RequestParam String teacherName,
-                                @RequestParam String teacherSurname,
-                                @RequestParam Integer classRoomId,
-                                RedirectAttributes redirectAttributes) {
-
-        ClassRoom classRoom = classRoomService.findById(classRoomId);
-        teacherService.createTeacher(teacherName, teacherSurname, classRoom.getClassRoomName());
-        redirectAttributes.addFlashAttribute("message", "Student was created.");
-        return "redirect:/teacher";
-    }
+//    @GetMapping("/teacher/createTeacher")
+//    public String showCreateTeacherForm(Model model) {
+//        List<ClassRoom> classRoomList = classRoomService.findAll();
+//        model.addAttribute("classRoomList", classRoomList);
+//        return "createTeacher";
+//    }
+//    @PostMapping("/createTeacher")
+//    public String createTeacher(@RequestParam String teacherName,
+//                                @RequestParam String teacherSurname,
+//                                @RequestParam Integer classRoomId,
+//                                RedirectAttributes redirectAttributes) {
+//
+//        ClassRoom classRoom = classRoomService.findById(classRoomId);
+//        teacherService.createTeacher(teacherName, teacherSurname, classRoom.getClassRoomName());
+//        redirectAttributes.addFlashAttribute("message", "Student was created.");
+//        return "redirect:/teacher";
+//    }
 
     @PostMapping("/deleteTeacher")
     public String deleteTeacher(@RequestParam("teacherId") Integer teacherId, RedirectAttributes redirectAttributes) {

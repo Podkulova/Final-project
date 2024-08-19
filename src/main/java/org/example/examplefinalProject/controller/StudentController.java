@@ -42,9 +42,7 @@ public class StudentController {
         return students;
     }
 
-
     private final ClassRoomService classRoomService;
-
 
     public StudentController(StudentService studentService, ClassRoomService classRoomService) {
         this.studentService = studentService;
@@ -66,20 +64,20 @@ public class StudentController {
         return modelAndView;
     }
 
-    @PostMapping("/createStudent")
-    public String createStudent(@RequestParam String studentName,
-                                @RequestParam String studentSurname,
-                                @RequestParam Integer classRoomId,
-                                RedirectAttributes redirectAttributes) {
-        try {
-            ClassRoom classRoom = classRoomService.findById(classRoomId);
-            studentService.createStudent(studentName, studentSurname, classRoom.getClassRoomName());
-            redirectAttributes.addFlashAttribute("message", "Student was created.");
-        } catch (ClassRoomNotFoundException e) {
-            redirectAttributes.addFlashAttribute("error", e.getMessage());
-        }
-        return "redirect:/student";
-    }
+//    @PostMapping("/createStudent")
+//    public String createStudent(@RequestParam String studentName,
+//                                @RequestParam String studentSurname,
+//                                @RequestParam Integer classRoomId,
+//                                RedirectAttributes redirectAttributes) {
+//        try {
+//            ClassRoom classRoom = classRoomService.findById(classRoomId);
+//            studentService.createStudent(studentName, studentSurname, classRoom.getClassRoomName());
+//            redirectAttributes.addFlashAttribute("message", "Student was created.");
+//        } catch (ClassRoomNotFoundException e) {
+//            redirectAttributes.addFlashAttribute("error", e.getMessage());
+//        }
+//        return "redirect:/student";
+//    }
 
     @PostMapping("/deleteStudent")
     public String deleteStudent(@RequestParam("studentId") Integer studentId, RedirectAttributes redirectAttributes){

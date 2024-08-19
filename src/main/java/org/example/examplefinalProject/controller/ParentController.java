@@ -38,22 +38,22 @@ public class ParentController {
         modelAndView.addObject("parent", parentService.findById(parentId));
         return modelAndView;
     }
-    @GetMapping("/parent/createParent")
-    public String showCreateParentForm(Model model) {
-        List<Student> studentList = studentService.findAll();
-        model.addAttribute("studentList", studentList);
-        return "createParent";
-    }
-    @PostMapping("/createParent")
-    public String createParent(@RequestParam String parentName,
-                               @RequestParam String parentSurname,
-                               @RequestParam String parentEmail,
-                               @RequestParam String parentPhone,
-                               @RequestParam String studentFullName) {
-        parentService.createParent(parentName, parentSurname, parentEmail, parentPhone, studentFullName);
-        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
-        return "redirect:/parent";
-    }
+//    @GetMapping("/parent/createParent")
+//    public String showCreateParentForm(Model model) {
+//        List<Student> studentList = studentService.findAll();
+//        model.addAttribute("studentList", studentList);
+//        return "createParent";
+//    }
+//    @PostMapping("/createParent")
+//    public String createParent(@RequestParam String parentName,
+//                               @RequestParam String parentSurname,
+//                               @RequestParam String parentEmail,
+//                               @RequestParam String parentPhone,
+//                               @RequestParam String studentFullName) {
+//        parentService.createParent(parentName, parentSurname, parentEmail, parentPhone, studentFullName);
+//        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
+//        return "redirect:/parent";
+//    }
 
     @PostMapping("/deleteParent")
     public String deleteParent(@RequestParam("parentId") Integer parentId, RedirectAttributes redirectAttributes){

@@ -38,6 +38,16 @@ public class ClassroomRestController {
         return ResponseEntity.ok(count);
     }
 
+    @PostMapping("/createClassRoom")
+    public String createClassRoom(@RequestParam String teacherFullName,
+                                  @RequestParam Integer classRoomId) {
+
+        ClassRoom classRoom = classRoomService.findById(classRoomId);
+        classRoomService.createClassRoom(teacherFullName, classRoom.getClassRoomName());
+        //log.info(String.format("User created teacher '%s' '%s'", teacherName, teacherSurname));
+        return "redirect:/classRoom";
+    }
+
     @DeleteMapping("/deleteClassRoom/{classRoomId}")
     public ResponseEntity<String> deleteClassRoom(@PathVariable Integer classRoomId) {
         classRoomService.deleteClassRoom(classRoomId);
