@@ -8,11 +8,10 @@ spring:
 
   application:
     name: flywayapp
-
   datasource:
-    url: jdbc:mysql://mysql-36bc738e-dasa-9d4f.i.aivencloud.com:28561/defaultdb
+    url: jdbc:mysql://schoolportal-sdamartinblazek.l.aivencloud.com:24242/defaultdb
     username: avnadmin
-    password: ${MYSQLDB_ROOT_PASSWORD}
+    password: AVNS_KKqWnEpE6UmZNf2T5Ye
     testOnBorrow: true
     testWhileIdle: true
     timeBetweenEvictionRunsMillis: 60000
@@ -22,12 +21,11 @@ spring:
     max-idle: 10
     max-wait: 8000
   flyway:
-    baseline-on-migrate: true
-    out-of-order: true
-    url: jdbc:mysql://mysql-36bc738e-dasa-9d4f.i.aivencloud.com:28561
+    baselineOnMigrate: true
+    url: jdbc:mysql://schoolportal-sdamartinblazek.l.aivencloud.com:24242
     schemas: defaultdb
     user: avnadmin
-    password: ${MYSQLDB_ROOT_PASSWORD}
+    password: AVNS_KKqWnEpE6UmZNf2T5Ye #i will change my password..
 
 public:
   endpoints: "/, /login, /student, /teacher, /classRoom, /parent"
