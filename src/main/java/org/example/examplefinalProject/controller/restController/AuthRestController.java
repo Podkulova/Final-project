@@ -18,11 +18,12 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class AuthRestController {
 
     private final AuthService authService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
     public ResponseEntity<Map<String, String>> register(@Valid @RequestBody UserRegisterDto registerRequest) {
         try {
@@ -54,7 +55,6 @@ public class AuthRestController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequestDto authenticationRequest) {
         try {

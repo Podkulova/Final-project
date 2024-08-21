@@ -13,11 +13,12 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/classroom")
+@CrossOrigin()
 public class ClassroomRestController {
 
     private final ClassRoomService classRoomService;
 
-    @GetMapping("")
+    @GetMapping
     public List<ClassRoom> getAllClassRooms() {
         return classRoomService.findAll();
     }
