@@ -15,10 +15,11 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/teacher")
+@CrossOrigin()
 public class TeacherRestController {
     private final TeacherService teacherService;
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<Teacher>> index() {
         return ResponseEntity.ok(teacherService.findAll());
     }

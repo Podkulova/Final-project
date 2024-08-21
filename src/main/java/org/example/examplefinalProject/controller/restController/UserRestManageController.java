@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
+@CrossOrigin()
 public class UserRestManageController {
     private final UserService userService;
     private final UserMapper userMapper;
