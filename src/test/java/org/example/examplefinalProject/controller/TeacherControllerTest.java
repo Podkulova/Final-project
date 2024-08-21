@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(TeacherController.class)
-@Disabled
 class TeacherControllerTest {
 
     @Autowired
@@ -35,6 +34,7 @@ class TeacherControllerTest {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
+    @Disabled("it need to be fixed")
     void createTeacher() throws Exception {
 
         final Teacher teacher = new Teacher(
@@ -77,6 +77,7 @@ class TeacherControllerTest {
     }
 
     @Test
+    @Disabled("it need to be fixed")
     void deleteTeacher() {
     }
 }
