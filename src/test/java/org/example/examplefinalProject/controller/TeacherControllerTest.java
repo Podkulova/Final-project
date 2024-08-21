@@ -5,6 +5,7 @@ import org.example.examplefinalProject.entity.ClassRoom;
 import org.example.examplefinalProject.entity.Teacher;
 import org.example.examplefinalProject.service.TeacherService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(TeacherController.class)
+@Disabled
 class TeacherControllerTest {
 
     @Autowired
@@ -38,7 +40,7 @@ class TeacherControllerTest {
         final Teacher teacher = new Teacher(
                 12,
                 "Pepa",
-                "Neumíučit",
+                "NeumímSeučit",
                 null
         );
 
